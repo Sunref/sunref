@@ -16,7 +16,7 @@ jobs:
         run: |
           # Calcule sua idade automaticamente
           CURRENT_YEAR=$(date +"%Y")
-          BIRTH_YEAR=2003
+          BIRTH_YEAR=1997
           AGE=$((CURRENT_YEAR - BIRTH_YEAR))
 
           # Substitua a idade no README
