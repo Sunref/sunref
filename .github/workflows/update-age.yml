@@ -20,7 +20,7 @@ jobs:
           AGE=$((CURRENT_YEAR - BIRTH_YEAR))
 
           # Substitua a idade no README
-          sed -i "s/tenho [0-9]\+/tenho $AGE/" README.md
+          sed -i "s/Tenho [0-9]\+/tenho $AGE/" README.md
 
       - name: Commit changes
         run: |
