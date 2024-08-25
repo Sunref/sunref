@@ -2,7 +2,7 @@
 
 - 🌱 Atualmente cursando Ciência da Computação no IFSP-SBV.
 - 👩‍💻 Amo programação e videogames.
-- 🌸 Tenho 22 anos e sou apaixonada por desafios.
+- 🌸 Tenho 21 anos e sou apaixonada por desafios.
 
 ---
 
