@@ -1,16 +1,16 @@
 <h1 align="center">
   <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=150&color=F7ACCF&width=435&lines=Ol%C3%A1!+%F0%9F%91%8B;Meu+nome+%C3%A9+Fernanda+%F0%9F%8C%B8" alt="Typing SVG" /></a>
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F798F7&width=435&lines=Hello!+%F0%9F%91%8B;I'm+Fernanda!+%F0%9F%87%A7%F0%9F%87%B7" alt="Typing SVG" />
   </a>
 </h1>
 
-- 🌱 Atualmente cursando Ciência da Computação no IFSP-SBV.
-- 👩‍💻 Amo programação e videogames.
-- 🌷 Tenho 21 anos e sou apaixonada por desafios.
+- 🌱 Currently studying Computer Science at IFSP-SBV.
+- 👩‍💻 I love programming and videogames.
+- 🌷 I'm 21 and passionate about challenges.
 
 ---
 
-### Tecnologias de meu interesse
+### Technologies that Interest Me:
 
 <p align="left">
 <img src="https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white"/>
@@ -20,7 +20,6 @@
 
 ---
 
-### Vamos nos conectar!
+### Let's connect!
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/fernandamartsilva/)
-
