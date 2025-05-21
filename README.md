@@ -25,3 +25,4 @@
 ### Let's connect!
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/fernandamartsilva/)
+[![Bento.me](https://img.shields.io/badge/BENTO.ME-8FCB9B?style=for-the-badge)](https://bento.me/sunref)
