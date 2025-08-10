@@ -16,7 +16,7 @@ jobs:
           CURRENT_YEAR=$(date +"%Y")
           BIRTH_YEAR=2003
           AGE=$((CURRENT_YEAR - BIRTH_YEAR))
-          sed -i "s/i'm [0-9]\+ and/i'm $AGE and/" README.md
+          sed -i "s/I'm [0-9]\+ and/I'm $AGE and/" README.md
 
       - name: Commit changes
         run: |
