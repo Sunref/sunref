@@ -2,7 +2,6 @@ name: Update README Age
 
 on:
   schedule:
-    # Ação que vai rodar todo ano no dia 22 de agosto às 00:00
     - cron: "0 0 22 8 *"
 
 jobs:
@@ -10,22 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Update README with new age
         run: |
-          # Calcule sua idade automaticamente
           CURRENT_YEAR=$(date +"%Y")
           BIRTH_YEAR=2003
           AGE=$((CURRENT_YEAR - BIRTH_YEAR))
-
-          # Substitua a idade no README
-          sed -i "s/Tenho [0-9]\+/tenho $AGE/" README.md
+          sed -i "s/i'm [0-9]\+ and/i'm $AGE and/" README.md
 
       - name: Commit changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add README.md
-          git commit -m "Atualiza a idade automaticamente"
+          git commit -m "Automatically update age in README" || true
           git push
