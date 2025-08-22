@@ -6,7 +6,7 @@
 
 - 🌱 Currently studying Computer Science at IFSP-SBV.
 - 👩‍💻 I love programming and videogames.
-- 🌷 I'm 21 and passionate about challenges.
+- 🌷 I'm 22 and passionate about challenges.
 
 ---
 
