@@ -1,8 +1,11 @@
 name: Update README Age
 
 on:
+  # Executa automaticamente todo dia 22 de agosto
   schedule:
     - cron: "0 0 22 8 *"
+  # Também pode ser executado manualmente
+  workflow_dispatch:
 
 jobs:
   update-readme:
@@ -16,12 +19,24 @@ jobs:
           CURRENT_YEAR=$(date +"%Y")
           BIRTH_YEAR=2003
           AGE=$((CURRENT_YEAR - BIRTH_YEAR))
-          sed -i "s/I'm [0-9]\+ and/I'm $AGE and/" README.md
+          
+          # Mostra idade calculada
+          echo "Updating age to $AGE..."
 
-      - name: Commit changes
+          # Edita a linha que contém "I'm <número> and"
+          sed -i -E "s/I'm [0-9]+ and/I'm $AGE and/" README.md
+
+      - name: Commit and push changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
           git add README.md
-          git commit -m "Automatically update age in README" || true
-          git push
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Automatically updated age to $AGE"
+            git push
+          fi
