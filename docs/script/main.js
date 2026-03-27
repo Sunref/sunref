@@ -55,6 +55,7 @@ function drag(e) {
 	yOffset = currentY;
 
 	windowWrapper.style.transform = `translate(${currentX}px, ${currentY}px)`;
+	windowWrapper.style.position = "relative";
 }
 
 function dragEnd() {
