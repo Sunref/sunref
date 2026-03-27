@@ -8,85 +8,60 @@ document.querySelectorAll(".window-btn").forEach((btn) => {
 	});
 });
 
-// Funcionalidade de arrastar a janela
+// Funcionalidade de arrastar — move o wrapper inteiro (janela + terminal)
 const titleBar = document.querySelector(".title-bar");
-const windowXP = document.querySelector(".window-xp");
-const container = document.querySelector(".container");
+const windowWrapper = document.querySelector(".window-wrapper");
 
 let isDragging = false;
-let currentX;
-let currentY;
-let initialX;
-let initialY;
+let currentX = 0;
+let currentY = 0;
+let initialX = 0;
+let initialY = 0;
 let xOffset = 0;
 let yOffset = 0;
-
-// Adiciona cursor pointer na barra de título
-titleBar.style.cursor = "move";
-
-// Prepara a janela para ser movida
-windowXP.style.position = "relative";
-windowXP.style.left = "0px";
-windowXP.style.top = "0px";
 
 titleBar.addEventListener("mousedown", dragStart);
 document.addEventListener("mousemove", drag);
 document.addEventListener("mouseup", dragEnd);
 
 // Suporte para touch (mobile)
-titleBar.addEventListener("touchstart", dragStart);
-document.addEventListener("touchmove", drag);
+titleBar.addEventListener("touchstart", dragStart, { passive: false });
+document.addEventListener("touchmove", drag, { passive: false });
 document.addEventListener("touchend", dragEnd);
 
 function dragStart(e) {
-	// Não arrasta se clicar nos botões
-	if (e.target.classList.contains("window-btn")) {
-		return;
-	}
+	if (e.target.classList.contains("window-btn")) return;
 
-	if (e.type === "touchstart") {
-		initialX = e.touches[0].clientX - xOffset;
-		initialY = e.touches[0].clientY - yOffset;
-	} else {
-		initialX = e.clientX - xOffset;
-		initialY = e.clientY - yOffset;
-	}
+	const clientX = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
+	const clientY = e.type === "touchstart" ? e.touches[0].clientY : e.clientY;
 
-	if (e.target === titleBar || e.target.parentElement === titleBar) {
-		isDragging = true;
-		windowXP.style.transition = "none";
-	}
+	initialX = clientX - xOffset;
+	initialY = clientY - yOffset;
+
+	isDragging = true;
 }
 
 function drag(e) {
-	if (isDragging) {
-		e.preventDefault();
+	if (!isDragging) return;
+	e.preventDefault();
 
-		if (e.type === "touchmove") {
-			currentX = e.touches[0].clientX - initialX;
-			currentY = e.touches[0].clientY - initialY;
-		} else {
-			currentX = e.clientX - initialX;
-			currentY = e.clientY - initialY;
-		}
+	const clientX = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
+	const clientY = e.type === "touchmove" ? e.touches[0].clientY : e.clientY;
 
-		xOffset = currentX;
-		yOffset = currentY;
+	currentX = clientX - initialX;
+	currentY = clientY - initialY;
 
-		setTranslate(currentX, currentY, windowXP);
-	}
+	xOffset = currentX;
+	yOffset = currentY;
+
+	windowWrapper.style.transform = `translate(${currentX}px, ${currentY}px)`;
 }
 
-function dragEnd(e) {
-	if (isDragging) {
-		initialX = currentX;
-		initialY = currentY;
-		isDragging = false;
-	}
-}
-
-function setTranslate(xPos, yPos, el) {
-	el.style.transform = `translate(${xPos}px, ${yPos}px)`;
+function dragEnd() {
+	if (!isDragging) return;
+	initialX = currentX;
+	initialY = currentY;
+	isDragging = false;
 }
 
 // Relógio da barra de tarefas
@@ -96,7 +71,6 @@ function updateClock() {
 	const minutes = String(now.getMinutes()).padStart(2, "0");
 	document.getElementById("clock").textContent = `${hours}:${minutes}`;
 }
-
 updateClock();
 setInterval(updateClock, 1000);
 
