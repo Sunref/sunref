@@ -8,7 +8,26 @@ document.querySelectorAll(".window-btn").forEach((btn) => {
 	});
 });
 
-// Funcionalidade de arrastar — move o wrapper inteiro (janela + terminal)
+// ===============================
+// 🌍 Language Switch (PT ↔ EN)
+// ===============================
+
+document.querySelector(".button")?.addEventListener("click", toggleLang);
+
+// Atualiza pág do botão
+function toggleLang() {
+	const currentPage = window.location.pathname.split("/").pop();
+
+	if (currentPage === "indexEN.html") {
+		window.location.href = "index.html";
+	} else {
+		window.location.href = "indexEN.html";
+	}
+}
+
+// Drag — só ativo em desktop (evita conflito com scroll mobile)
+const isMobile = () => window.innerWidth <= 600;
+
 const titleBar = document.querySelector(".title-bar");
 const windowWrapper = document.querySelector(".window-wrapper");
 
@@ -24,13 +43,22 @@ titleBar.addEventListener("mousedown", dragStart);
 document.addEventListener("mousemove", drag);
 document.addEventListener("mouseup", dragEnd);
 
-// Suporte para touch (mobile)
-titleBar.addEventListener("touchstart", dragStart, { passive: false });
-document.addEventListener("touchmove", drag, { passive: false });
-document.addEventListener("touchend", dragEnd);
+// Touch só ativa em desktop (tablet/desktop com touch)
+titleBar.addEventListener("touchstart", (e) => {
+	if (!isMobile()) dragStart(e);
+}, { passive: false });
+
+document.addEventListener("touchmove", (e) => {
+	if (!isMobile()) drag(e);
+}, { passive: false });
+
+document.addEventListener("touchend", () => {
+	if (!isMobile()) dragEnd();
+});
 
 function dragStart(e) {
 	if (e.target.classList.contains("window-btn")) return;
+	if (isMobile()) return;
 
 	const clientX = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
 	const clientY = e.type === "touchstart" ? e.touches[0].clientY : e.clientY;

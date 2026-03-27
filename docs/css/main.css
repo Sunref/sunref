@@ -4,19 +4,52 @@
 	box-sizing: border-box;
 }
 
-/* CRT GLOBAL (corrigido) */
+/* Botçao das Linguas*/
+/* From Uiverse.io by pipic1 */
+.button {
+	--key-text-color: #969faf;
+	--docsearch-key-shadow:
+		inset 0 -2px 0 0 #cdcde6, inset 0 0 1px 1px #fff,
+		0 1px 2px 1px rgba(30, 35, 90, 0.4);
+	--docsearch-key-gradient: linear-gradient(-225deg, #d5dbe4, #f8f8f8);
+	border: none;
+	background: var(--docsearch-key-gradient);
+	border-radius: 3px;
+	box-shadow: var(--docsearch-key-shadow);
+	color: var(--key-text-color);
+	cursor: pointer;
+	height: 2.5em;
+	text-align: center;
+	padding: 0.6em;
+	margin: 0 0.6em;
+	display: inline-block;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 1em;
+	min-width: 1em;
+	line-height: 1em;
+	user-select: none;
+	position: fixed;
+	top: 12px;
+	right: 12px;
+	z-index: 999999;
+}
+
+/* CRT GLOBAL */
 body {
 	margin: 0;
 	min-height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-image: url('../images/background.jpg');
+	background-image: url("../images/background.jpg");
 	background-attachment: fixed;
-	font-family: "JetBrains Mono", "Fira Code", "Consolas", "Courier New", monospace;
-
+	font-family:
+		"JetBrains Mono", "Fira Code", "Consolas", "Courier New", monospace;
 	position: relative;
-	isolation: isolate; /* 🔥 evita interferência com filhos */
+	isolation: isolate;
+	padding-bottom: 48px; /* espaço para a taskbar */
+	padding-top: 12px;
 }
 
 /* camada CRT */
@@ -24,7 +57,6 @@ body::before {
 	content: "";
 	position: fixed;
 	inset: 0;
-
 	background:
 		repeating-linear-gradient(
 			0deg,
@@ -35,10 +67,9 @@ body::before {
 		),
 		radial-gradient(
 			circle at center,
-			rgba(0,0,0,0) 0%,
-			rgba(0,0,0,0.35) 100%
+			rgba(0, 0, 0, 0) 0%,
+			rgba(0, 0, 0, 0.35) 100%
 		);
-
 	mix-blend-mode: multiply;
 	pointer-events: none;
 	z-index: 1;
@@ -49,7 +80,7 @@ body::after {
 	content: "";
 	position: fixed;
 	inset: 0;
-	background: rgba(255,255,255,0.02);
+	background: rgba(255, 255, 255, 0.02);
 	opacity: 0.03;
 	animation: flicker 0.15s infinite;
 	pointer-events: none;
@@ -57,9 +88,15 @@ body::after {
 }
 
 @keyframes flicker {
-	0% { opacity: 0.02; }
-	50% { opacity: 0.04; }
-	100% { opacity: 0.02; }
+	0% {
+		opacity: 0.02;
+	}
+	50% {
+		opacity: 0.04;
+	}
+	100% {
+		opacity: 0.02;
+	}
 }
 
 .container {
@@ -67,6 +104,8 @@ body::after {
 	justify-content: center;
 	position: relative;
 	z-index: 3;
+	width: 100%;
+	padding: 0 8px;
 }
 
 /* Wrapper */
@@ -82,10 +121,17 @@ body::after {
 
 /* XP */
 .window-xp {
-	background: linear-gradient(180deg, #0997ff 0%, #0053ee 4%, #0050ee 96%, #06f 100%);
+	background: linear-gradient(
+		180deg,
+		#0997ff 0%,
+		#0053ee 4%,
+		#0050ee 96%,
+		#06f 100%
+	);
 	border-radius: 8px 8px 0 0;
 	padding: 3px;
-	box-shadow: 0 0 0 1px #0831d9;
+	/*box-shadow: 0 0 0 1px #0831d9;*/
+	width: 100%;
 }
 
 .title-bar {
@@ -158,7 +204,7 @@ body::after {
 	gap: 15px;
 	align-items: center;
 	box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
-	max-width: 800px;
+	width: 100%;
 }
 
 .profile-pic {
@@ -167,12 +213,18 @@ body::after {
 	border: 3px solid #316ac5;
 	border-radius: 4px;
 	overflow: hidden;
+	flex-shrink: 0;
 }
 
 .profile-pic img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+}
+
+.profile-info {
+	flex: 1;
+	min-width: 0; /* evita overflow em flex */
 }
 
 .profile-info h1 {
@@ -207,14 +259,17 @@ body::after {
 /* terminal */
 .terminal-box {
 	background: #0a0a0a;
-	width: 100.30%;
+	width: 100%;
 	border: 3px solid #0831d9;
 	border-top: none;
 	border-radius: 0 0 8px 8px;
 	padding: 20px 30px;
-	font-family: "JetBrains Mono", "Fira Code", "Consolas", "Courier New", monospace;
+	font-family:
+		"JetBrains Mono", "Fira Code", "Consolas", "Courier New", monospace;
 	font-size: 14px;
-	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 0 60px rgba(0, 255, 80, 0.03);
+	box-shadow:
+		0 8px 32px rgba(0, 0, 0, 0.6),
+		inset 0 0 60px rgba(0, 255, 80, 0.03);
 	position: relative;
 	overflow: hidden;
 }
@@ -257,9 +312,18 @@ body::after {
 	border-radius: 50%;
 }
 
-.terminal-dot.red    { background: #4a0000; box-shadow: 0 0 4px #ff000066; }
-.terminal-dot.yellow { background: #3a3000; box-shadow: 0 0 4px #ffcc0066; }
-.terminal-dot.green  { background: #003a00; box-shadow: 0 0 4px #00ff0066; }
+.terminal-dot.red {
+	background: #4a0000;
+	box-shadow: 0 0 4px #ff000066;
+}
+.terminal-dot.yellow {
+	background: #3a3000;
+	box-shadow: 0 0 4px #ffcc0066;
+}
+.terminal-dot.green {
+	background: #003a00;
+	box-shadow: 0 0 4px #00ff0066;
+}
 
 .terminal-label {
 	font-size: 11px;
@@ -310,28 +374,30 @@ body::after {
 }
 
 @keyframes blink {
-	0%, 100% { opacity: 1; }
-	50%       { opacity: 0; }
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
 }
 
-/* TASKBAR (visual completo + compatível com CRT) */
+/* TASKBAR */
 .taskbar {
 	position: fixed;
 	bottom: 0;
 	left: 0;
 	width: 100%;
 	height: 40px;
-
 	background: linear-gradient(180deg, #245edb 0%, #1941a5 50%, #1941a5 100%);
 	border-top: 2px solid #4584ff;
 	box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
-
 	display: flex;
 	align-items: center;
 	padding: 0 4px;
 	gap: 4px;
-
-	z-index: 99999; /* acima do CRT */
+	z-index: 99999;
 }
 
 /* botão iniciar */
@@ -341,23 +407,20 @@ body::after {
 	background: linear-gradient(180deg, #5eac56 0%, #3c8d36 50%, #2c6b28 100%);
 	border: 1px solid #0e4e0a;
 	border-radius: 4px;
-
 	display: flex;
 	align-items: center;
 	gap: 6px;
-
 	color: white;
 	font-weight: bold;
 	font-size: 13px;
 	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-
 	cursor: pointer;
-
 	box-shadow:
 		inset 1px 1px 0 rgba(255, 255, 255, 0.3),
 		2px 2px 4px rgba(0, 0, 0, 0.3);
-
 	transition: all 0.1s;
+	white-space: nowrap;
+	flex-shrink: 0;
 }
 
 .start-button:hover {
@@ -379,6 +442,7 @@ body::after {
 	box-shadow:
 		-1px 0 0 rgba(0, 0, 0, 0.3),
 		1px 0 0 rgba(255, 255, 255, 0.2);
+	flex-shrink: 0;
 }
 
 /* itens */
@@ -388,6 +452,7 @@ body::after {
 	gap: 4px;
 	overflow-x: auto;
 	scrollbar-width: none;
+	min-width: 0;
 }
 
 .taskbar-items::-webkit-scrollbar {
@@ -396,26 +461,27 @@ body::after {
 
 .taskbar-item {
 	height: 32px;
-	padding: 0 12px;
-
+	padding: 0 10px;
 	background: linear-gradient(180deg, #3d7ce8 0%, #2563d9 50%, #1a4cb8 100%);
 	border: 1px solid #0d3a8f;
 	border-radius: 3px;
-
 	display: flex;
 	align-items: center;
 	gap: 6px;
-
 	color: white;
 	font-size: 12px;
 	cursor: pointer;
 	white-space: nowrap;
-
 	box-shadow:
 		inset 1px 1px 0 rgba(255, 255, 255, 0.2),
 		1px 1px 3px rgba(0, 0, 0, 0.3);
-
 	transition: all 0.1s;
+	min-width: 36px;
+	height: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
 }
 
 .taskbar-item:hover {
@@ -436,12 +502,15 @@ body::after {
 	gap: 8px;
 	padding: 0 8px;
 	height: 32px;
-
-	background: linear-gradient(180deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0.1) 0%,
+		rgba(255, 255, 255, 0.05) 100%
+	);
 	border: 1px solid rgba(0, 0, 0, 0.3);
 	border-radius: 3px;
-
 	margin-left: 4px;
+	flex-shrink: 0;
 }
 
 /* relógio */
@@ -452,10 +521,14 @@ body::after {
 	padding: 0 4px;
 }
 
-/* scanlines continuam */
+/* scanlines */
 @keyframes scanline {
-	0% { top: 0; }
-	100% { top: 100%; }
+	0% {
+		top: 0;
+	}
+	100% {
+		top: 100%;
+	}
 }
 
 .scanline {
@@ -466,6 +539,124 @@ body::after {
 	height: 2px;
 	pointer-events: none;
 	z-index: 99998;
-	background: rgba(255,255,255,0.08);
+	background: rgba(255, 255, 255, 0.08);
 	animation: scanline 8s linear infinite;
+}
+
+.window-wrapper {
+	width: 100%;
+	max-width: 800px;
+	display: flex;
+	flex-direction: column;
+}
+
+/* ============================================================
+   RESPONSIVO — MOBILE
+   ============================================================ */
+@media (max-width: 600px) {
+	body {
+		align-items: flex-start;
+		padding-top: 12px;
+		padding-bottom: 52px;
+		background-attachment: scroll; /* fixed trava no iOS */
+	}
+
+	.container {
+		padding: 0 6px;
+		align-items: flex-start;
+	}
+
+	.window-wrapper {
+		width: 100%;
+	}
+
+	/* Barra de título menor */
+	.title-bar {
+		font-size: 12px;
+		padding: 3px 5px;
+	}
+
+	/* Perfil empilha verticalmente */
+	.profile-section {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: 14px;
+		gap: 12px;
+	}
+
+	.profile-pic {
+		width: 90px;
+		height: 90px;
+	}
+
+	.profile-info h1 {
+		font-size: 18px;
+		margin-bottom: 8px;
+	}
+
+	.profile-info p {
+		font-size: 13px;
+		line-height: 1.5;
+	}
+
+	/* Social buttons centralizados */
+	.social-section {
+		justify-content: center;
+		gap: 8px;
+	}
+
+	.social-item {
+		font-size: 12px;
+		padding: 6px 12px;
+	}
+
+	.terminal-label {
+		font-size: 10px;
+		letter-spacing: 1px;
+	}
+
+	/* Taskbar: esconde ícones de tray, mantém relógio */
+	.tray-icon {
+		display: none;
+	}
+
+	.system-tray {
+		padding: 0 6px;
+		gap: 4px;
+	}
+
+	.start-button {
+		font-size: 12px;
+		padding: 0 8px;
+	}
+
+	.taskbar-item .label {
+		display: none;
+	}
+
+	.taskbar-item {
+		padding: 0 8px;
+	}
+}
+
+/* Tablet — ajustes intermediários */
+@media (min-width: 601px) and (max-width: 800px) {
+	body {
+		padding-top: 20px;
+		background-attachment: scroll;
+	}
+
+	.container {
+		padding: 0 12px;
+	}
+
+	.profile-info h1 {
+		font-size: 20px;
+	}
+
+	.profile-pic {
+		width: 100px;
+		height: 100px;
+	}
 }
