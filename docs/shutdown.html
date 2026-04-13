@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desligando...</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: "Segoe UI", "Tahoma", sans-serif;
+      color: #fff;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    /* ── FASE 1 – Desligando ── */
+    #phase-shutdown {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      transition: opacity 1s ease;
+    }
+
+
+
+    /* Texto + dots animados */
+    .shutdown-label {
+      font-size: 17px;
+      font-weight: 300;
+      letter-spacing: 1.5px;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .dots::after {
+      content: '';
+      animation: dots 1.6s steps(4, end) infinite;
+    }
+    @keyframes dots {
+      0%   { content: ''; }
+      25%  { content: '.'; }
+      50%  { content: '..'; }
+      75%  { content: '...'; }
+      100% { content: ''; }
+    }
+
+    /* Spinner estilo Win7 (6 bolinhas girando) */
+    .spinner {
+      position: relative;
+      width: 48px;
+      height: 48px;
+    }
+    .spinner-dot {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4da6ff;
+      top: 50%;
+      left: 50%;
+      margin: -4px 0 0 -4px;
+      animation: spinnerFade 1.2s linear infinite;
+    }
+    .spinner-dot:nth-child(1) { transform: rotate(  0deg) translateY(-18px); animation-delay: 0s; }
+    .spinner-dot:nth-child(2) { transform: rotate( 60deg) translateY(-18px); animation-delay: -1.0s; }
+    .spinner-dot:nth-child(3) { transform: rotate(120deg) translateY(-18px); animation-delay: -0.8s; }
+    .spinner-dot:nth-child(4) { transform: rotate(180deg) translateY(-18px); animation-delay: -0.6s; }
+    .spinner-dot:nth-child(5) { transform: rotate(240deg) translateY(-18px); animation-delay: -0.4s; }
+    .spinner-dot:nth-child(6) { transform: rotate(300deg) translateY(-18px); animation-delay: -0.2s; }
+    @keyframes spinnerFade {
+      0%, 39% { opacity: 0.15; }
+      40%      { opacity: 1; }
+      100%     { opacity: 0.15; }
+    }
+
+    /* ── FASE 2 – Desligado ── */
+    #phase-off {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+    }
+    #phase-off.visible {
+      display: flex;
+    }
+    #phase-off.faded {
+      opacity: 1;
+    }
+
+    .off-message {
+      font-size: 15px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.45);
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    /* Botão de ligar */
+    .power-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      background: radial-gradient(circle at 40% 35%,
+        rgba(80, 120, 200, 0.25) 0%,
+        rgba(10, 20, 60, 0.6) 100%
+      );
+      color: rgba(255, 255, 255, 0.55);
+      font-size: 26px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 10px rgba(60, 120, 255, 0.15);
+    }
+    .power-btn:hover {
+      border-color: rgba(100, 180, 255, 0.6);
+      color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 0 22px rgba(60, 140, 255, 0.45);
+    }
+
+    .power-hint {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FASE 1: animação de desligamento -->
+  <div id="phase-shutdown">
+
+
+    <div class="spinner">
+      <div class="spinner-dot"></div>
+      <div class="spinner-dot"></div>
+      <div class="spinner-dot"></div>
+      <div class="spinner-dot"></div>
+      <div class="spinner-dot"></div>
+      <div class="spinner-dot"></div>
+    </div>
+
+    <p class="shutdown-label">Desligando<span class="dots"></span></p>
+  </div>
+
+  <!-- FASE 2: tela preta "desligado" -->
+  <div id="phase-off">
+    <p class="off-message">É seguro desligar o computador agora.</p>
+    <button class="power-btn" onclick="powerOn()" title="Ligar">⏻</button>
+    <p class="power-hint">clique para ligar novamente</p>
+  </div>
+
+  <script>
+    // Limpa autenticação — terá de logar novamente
+    sessionStorage.removeItem('authenticated');
+
+    var phaseShutdown = document.getElementById('phase-shutdown');
+    var phaseOff      = document.getElementById('phase-off');
+
+    // Após 3.5s, apaga o ecrã e mostra fase 2
+    setTimeout(function () {
+      phaseShutdown.style.opacity = '0';
+
+      setTimeout(function () {
+        phaseShutdown.style.display = 'none';
+        phaseOff.classList.add('visible');
+
+        // Pequeno delay para o display:flex fazer efeito antes do fade
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            phaseOff.classList.add('faded');
+          });
+        });
+      }, 1000); // espera o fade-out da fase 1
+
+    }, 3500);
+
+    function powerOn() {
+      window.location.href = 'login.html';
+    }
+  </script>
+
+</body>
+</html>

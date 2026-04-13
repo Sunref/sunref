@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Bem-vindo</title>
+  <link rel="stylesheet" href="./css/login.css" />
+</head>
+<body>
+  <div class="scanline"></div>
+  <div class="scanline"></div>
+  <div class="scanline"></div>
+  <div class="scanline"></div>
+  <div class="scanline"></div>
+
+  <!-- Post-it com credenciais (canto superior direito) -->
+  <div class="postit">
+    <div class="postit-tape"></div>
+    <p class="postit-line"><strong>user:</strong> fernanda</p>
+    <p class="postit-line"><strong>pass:</strong> sunref</p>
+  </div>
+
+  <!-- Tela de login estilo Windows 7 -->
+  <div class="login-screen">
+    <div class="login-card">
+      <div class="login-avatar-wrap">
+        <img src="./images/perfil.jpg" alt="Fernanda" class="login-avatar" />
+      </div>
+      <h2 class="login-username">Fernanda</h2>
+      <div class="login-form">
+        <input
+          type="password"
+          id="password-input"
+          class="login-input"
+          placeholder="Senha"
+          autocomplete="off"
+          onkeydown="if(event.key==='Enter') doLogin()"
+        />
+        <button class="login-arrow" onclick="doLogin()" title="Entrar">&#x279C;</button>
+      </div>
+      <p class="login-error" id="login-error"></p>
+    </div>
+  </div>
+
+  <!-- Barra inferior estilo Windows 7 -->
+  <div class="login-bottom-bar">
+    <div class="lb-right">
+      <button class="lb-btn" onclick="tryClose()" title="Desligar">⏻ Desligar</button>
+    </div>
+  </div>
+
+  <script src="./script/login.js"></script>
+</body>
+</html>

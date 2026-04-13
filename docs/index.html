@@ -4,6 +4,11 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Portfolio</title>
+		<script>
+		  if (!sessionStorage.getItem('authenticated')) {
+		    window.location.replace('login.html');
+		  }
+		</script>
 		<link rel="stylesheet" href="./css/main.css" />
 	</head>
 	<body>
@@ -24,9 +29,9 @@
 							<span>Portfolio</span>
 						</div>
 						<div class="window-buttons">
-							<div class="window-btn">_</div>
-							<div class="window-btn">□</div>
-							<div class="window-btn close">✕</div>
+							<div class="window-btn" id="btn-minimize">_</div>
+							<div class="window-btn" id="btn-maximize">□</div>
+							<div class="window-btn close" id="btn-close">✕</div>
 						</div>
 					</div>
 					<div class="window-content">
@@ -139,7 +144,7 @@
 			</button>
 			<div class="taskbar-divider"></div>
 			<div class="taskbar-items">
-				<div class="taskbar-item">
+				<div class="taskbar-item" id="taskbar-portfolio" onclick="taskbarClick()">
 					<span class="icon">🖥️</span>
 					<span class="label">Portfólio</span>
 				</div>
@@ -148,6 +153,65 @@
 				<div class="tray-icon">🔊</div>
 				<div class="tray-icon">🌐</div>
 				<div class="clock" id="clock">00:00</div>
+			</div>
+		</div>
+
+		<!-- Ícone de desktop (aparece quando janela é fechada) -->
+		<div class="desktop-icon hidden" id="desktop-icon" onclick="openWindow()">
+			<div class="desktop-icon-img">📄</div>
+			<div class="desktop-icon-label">portfolio.txt</div>
+		</div>
+
+		<!-- Menu Iniciar estilo Windows 7 -->
+		<div class="start-menu hidden" id="start-menu">
+			<div class="start-menu-header">
+				<img src="./images/perfil.jpg" class="sm-avatar" alt="Fernanda" />
+				<span class="sm-username">Fernanda</span>
+			</div>
+			<div class="start-menu-body">
+				<div class="sm-left">
+					<div class="sm-item" onclick="window.open('https://github.com/Sunref/nite')">
+						<span class="sm-icon">📝</span>
+						<span>NITE</span>
+					</div>
+					<div class="sm-item" onclick="window.open('https://github.com/Sunref/Telegram-Class-Bot')">
+						<span class="sm-icon">🤖</span>
+						<span>Telegram Bot</span>
+					</div>
+					<div class="sm-separator"></div>
+					<div class="sm-item sm-all-programs">
+						<span>Todos os Programas</span>
+						<span>▶</span>
+					</div>
+				</div>
+				<div class="sm-right">
+					<div class="sm-item" onclick="window.open('https://github.com/Sunref')">
+						<span class="sm-icon">💻</span>
+						<span>GitHub</span>
+					</div>
+					<div class="sm-item" onclick="window.open('https://linkedin.com/in/fernandamartsilva/')">
+						<span class="sm-icon">🔗</span>
+						<span>LinkedIn</span>
+					</div>
+					<div class="sm-item" onclick="window.location.href='mailto:martins.fernanda@protonmail.com'">
+						<span class="sm-icon">✉️</span>
+						<span>Email</span>
+					</div>
+					<div class="sm-separator"></div>
+					<div class="sm-item" onclick="openWindow(); closeStartMenu()">
+						<span class="sm-icon">📁</span>
+						<span>Portfólio</span>
+					</div>
+				</div>
+			</div>
+			<div class="start-menu-footer">
+				<div class="sm-search">
+					<span>🔍</span>
+					<input type="text" placeholder="Pesquisar programas e arquivos" />
+				</div>
+				<div class="sm-power-group">
+					<button class="sm-power-btn" onclick="shutdownPC()" title="Desligar">⏻</button>
+				</div>
 			</div>
 		</div>
 

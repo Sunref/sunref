@@ -1,112 +1,185 @@
-// Efeito de clique nos botões da janela
-document.querySelectorAll(".window-btn").forEach((btn) => {
-	btn.addEventListener("click", function () {
-		this.style.transform = "scale(0.95)";
-		setTimeout(() => {
-			this.style.transform = "scale(1)";
-		}, 100);
-	});
+// ===== AUTH CHECK =====
+(function() {
+  if (!sessionStorage.getItem('authenticated')) {
+    window.location.replace('login.html');
+  }
+})();
+
+// ===== ELEMENTOS =====
+var windowWrapper = document.querySelector(".window-wrapper");
+var desktopIcon = document.getElementById("desktop-icon");
+var taskbarPortfolio = document.getElementById("taskbar-portfolio");
+var startMenuEl = document.getElementById("start-menu");
+var windowState = 'normal'; // 'normal', 'minimized', 'closed'
+
+// ===== BOTÕES DA JANELA =====
+document.getElementById("btn-close").addEventListener("click", function () {
+  closeWindow();
 });
 
-// ===============================
-// 🌍 Language Switch (PT ↔ EN)
-// ===============================
+document.getElementById("btn-minimize").addEventListener("click", function () {
+  if (windowState === 'normal') {
+    minimizeWindow();
+  } else if (windowState === 'minimized') {
+    restoreWindow();
+  }
+});
 
-document.querySelector(".button")?.addEventListener("click", toggleLang);
+document.getElementById("btn-maximize").addEventListener("click", function () {
+  this.style.transform = "scale(0.95)";
+  var self = this;
+  setTimeout(function() { self.style.transform = "scale(1)"; }, 100);
+});
 
-// Atualiza pág do botão
-function toggleLang() {
-	const currentPage = window.location.pathname.split("/").pop();
-
-	if (currentPage === "indexEN.html") {
-		window.location.href = "index.html";
-	} else {
-		window.location.href = "indexEN.html";
-	}
+// ===== FUNÇÕES DE JANELA =====
+function closeWindow() {
+  windowWrapper.classList.add("hidden");
+  desktopIcon.classList.remove("hidden");
+  taskbarPortfolio.classList.add("hidden");
+  windowState = 'closed';
+  closeStartMenu();
 }
 
-// Drag — só ativo em desktop (evita conflito com scroll mobile)
-const isMobile = () => window.innerWidth <= 600;
+function minimizeWindow() {
+  windowWrapper.classList.add("hidden");
+  taskbarPortfolio.classList.add("active");
+  windowState = 'minimized';
+  closeStartMenu();
+}
 
-const titleBar = document.querySelector(".title-bar");
-const windowWrapper = document.querySelector(".window-wrapper");
+function restoreWindow() {
+  windowWrapper.classList.remove("hidden");
+  taskbarPortfolio.classList.remove("active");
+  windowState = 'normal';
+}
 
-let isDragging = false;
-let currentX = 0;
-let currentY = 0;
-let initialX = 0;
-let initialY = 0;
-let xOffset = 0;
-let yOffset = 0;
+function openWindow() {
+  windowWrapper.classList.remove("hidden");
+  desktopIcon.classList.add("hidden");
+  taskbarPortfolio.classList.remove("hidden");
+  taskbarPortfolio.classList.remove("active");
+  windowState = 'normal';
+}
+
+function taskbarClick() {
+  if (windowState === 'minimized') {
+    restoreWindow();
+  } else if (windowState === 'normal') {
+    minimizeWindow();
+  }
+}
+
+// ===== MENU INICIAR =====
+function toggleStartMenu() {
+  startMenuEl.classList.toggle("hidden");
+}
+
+function closeStartMenu() {
+  startMenuEl.classList.add("hidden");
+}
+
+document.querySelector(".start-button").addEventListener("click", function (e) {
+  e.stopPropagation();
+  toggleStartMenu();
+});
+
+document.addEventListener("click", function (e) {
+  if (
+    !startMenuEl.contains(e.target) &&
+    !document.querySelector(".start-button").contains(e.target)
+  ) {
+    closeStartMenu();
+  }
+});
+
+// ===== DESLIGAR =====
+function shutdownPC() {
+  window.location.href = 'shutdown.html';
+}
+
+// ===== TROCA DE IDIOMA =====
+document.querySelector(".button")?.addEventListener("click", toggleLang);
+
+function toggleLang() {
+  var currentPage = window.location.pathname.split("/").pop();
+  if (currentPage === "indexEN.html") {
+    window.location.href = "index.html";
+  } else {
+    window.location.href = "indexEN.html";
+  }
+}
+
+// ===== DRAG (apenas desktop) =====
+var isMobile = function() { return window.innerWidth <= 600; };
+
+var titleBar = document.querySelector(".title-bar");
+
+var isDragging = false;
+var currentX = 0;
+var currentY = 0;
+var initialX = 0;
+var initialY = 0;
+var xOffset = 0;
+var yOffset = 0;
 
 titleBar.addEventListener("mousedown", dragStart);
 document.addEventListener("mousemove", drag);
 document.addEventListener("mouseup", dragEnd);
 
-// Touch só ativa em desktop (tablet/desktop com touch)
-titleBar.addEventListener("touchstart", (e) => {
-	if (!isMobile()) dragStart(e);
+titleBar.addEventListener("touchstart", function(e) {
+  if (!isMobile()) dragStart(e);
 }, { passive: false });
 
-document.addEventListener("touchmove", (e) => {
-	if (!isMobile()) drag(e);
+document.addEventListener("touchmove", function(e) {
+  if (!isMobile()) drag(e);
 }, { passive: false });
 
-document.addEventListener("touchend", () => {
-	if (!isMobile()) dragEnd();
+document.addEventListener("touchend", function() {
+  if (!isMobile()) dragEnd();
 });
 
 function dragStart(e) {
-	if (e.target.classList.contains("window-btn")) return;
-	if (isMobile()) return;
+  if (e.target.classList.contains("window-btn")) return;
+  if (isMobile()) return;
 
-	const clientX = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
-	const clientY = e.type === "touchstart" ? e.touches[0].clientY : e.clientY;
+  var clientX = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
+  var clientY = e.type === "touchstart" ? e.touches[0].clientY : e.clientY;
 
-	initialX = clientX - xOffset;
-	initialY = clientY - yOffset;
-
-	isDragging = true;
+  initialX = clientX - xOffset;
+  initialY = clientY - yOffset;
+  isDragging = true;
 }
 
 function drag(e) {
-	if (!isDragging) return;
-	e.preventDefault();
+  if (!isDragging) return;
+  e.preventDefault();
 
-	const clientX = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
-	const clientY = e.type === "touchmove" ? e.touches[0].clientY : e.clientY;
+  var clientX = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
+  var clientY = e.type === "touchmove" ? e.touches[0].clientY : e.clientY;
 
-	currentX = clientX - initialX;
-	currentY = clientY - initialY;
+  currentX = clientX - initialX;
+  currentY = clientY - initialY;
+  xOffset = currentX;
+  yOffset = currentY;
 
-	xOffset = currentX;
-	yOffset = currentY;
-
-	windowWrapper.style.transform = `translate(${currentX}px, ${currentY}px)`;
-	windowWrapper.style.position = "relative";
+  windowWrapper.style.transform = "translate(" + currentX + "px, " + currentY + "px)";
+  windowWrapper.style.position = "relative";
 }
 
 function dragEnd() {
-	if (!isDragging) return;
-	initialX = currentX;
-	initialY = currentY;
-	isDragging = false;
+  if (!isDragging) return;
+  initialX = currentX;
+  initialY = currentY;
+  isDragging = false;
 }
 
-// Relógio da barra de tarefas
+// ===== RELÓGIO =====
 function updateClock() {
-	const now = new Date();
-	const hours = String(now.getHours()).padStart(2, "0");
-	const minutes = String(now.getMinutes()).padStart(2, "0");
-	document.getElementById("clock").textContent = `${hours}:${minutes}`;
+  var now = new Date();
+  var hours = String(now.getHours()).padStart(2, "0");
+  var minutes = String(now.getMinutes()).padStart(2, "0");
+  var clockEl = document.getElementById("clock");
+  if (clockEl) clockEl.textContent = hours + ":" + minutes;
 }
 updateClock();
 setInterval(updateClock, 1000);
-
-// Efeito no botão Iniciar
-document.querySelector(".start-button").addEventListener("click", function () {
-	this.style.transform = "translateY(1px)";
-	setTimeout(() => {
-		this.style.transform = "translateY(0)";
-	}, 100);
-});
