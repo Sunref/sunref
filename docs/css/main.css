@@ -38,22 +38,30 @@
 /* Botão de idioma na taskbar (visível só no mobile) */
 .tray-lang {
 	display: none;
-	color: white;
-	font-size: 11px;
+	color: #969faf;
+	font-size: 0.85em;
 	font-weight: bold;
 	cursor: pointer;
-	padding: 0 6px;
-	height: 22px;
-	line-height: 22px;
-	border: 1px solid rgba(255,255,255,0.25);
-	border-radius: 2px;
-	background: rgba(255,255,255,0.08);
+	padding: 0.4em 0.6em;
+	height: 2.2em;
+	line-height: 1em;
+	border: none;
+	border-radius: 3px;
+	background: linear-gradient(-225deg, #d5dbe4, #f8f8f8);
+	box-shadow:
+		inset 0 -2px 0 0 #cdcde6,
+		inset 0 0 1px 1px #fff,
+		0 1px 2px 1px rgba(30, 35, 90, 0.4);
 	user-select: none;
-	transition: background 0.1s;
+	text-transform: uppercase;
+	align-items: center;
+	justify-content: center;
+	transition: opacity 0.1s;
+	flex-shrink: 0;
 }
 
 .tray-lang:hover {
-	background: rgba(255,255,255,0.18);
+	opacity: 0.85;
 }
 
 /* CRT GLOBAL */
@@ -719,8 +727,8 @@ body::after {
 
 	.start-menu-header {
 		padding: 10px 14px;
-		/* gradient de coluna perde sentido em 100% — usa cor única */
 		background: #1a4a96;
+		border-bottom: 1px solid #0a2a6a;
 	}
 
 	.start-menu-body {
@@ -747,15 +755,20 @@ body::after {
 	}
 
 	.start-menu-footer {
-		/* gradiente horizontal não faz sentido em largura total */
 		background: #1e3e8a;
-		padding: 8px 12px;
+		padding: 8px 10px;
+		gap: 8px;
 	}
 
 	.sm-search {
 		flex: 1;
 		width: auto;
 		min-width: 0;
+		max-width: calc(100% - 48px);
+	}
+
+	.sm-power-group {
+		flex-shrink: 0;
 	}
 }
 
