@@ -757,14 +757,11 @@ body::after {
 	.start-menu-footer {
 		background: #1e3e8a;
 		padding: 8px 10px;
-		gap: 8px;
+		justify-content: flex-end;
 	}
 
 	.sm-search {
-		flex: 1;
-		width: auto;
-		min-width: 0;
-		max-width: calc(100% - 48px);
+		display: none;
 	}
 
 	.sm-power-group {
