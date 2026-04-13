@@ -551,18 +551,18 @@ body::after {
 }
 
 /* ============================================================
-   RESPONSIVO — MOBILE
+   RESPONSIVO — MOBILE (≤ 600px)
    ============================================================ */
 @media (max-width: 600px) {
 	body {
 		align-items: flex-start;
-		padding-top: 12px;
+		padding-top: 10px;
 		padding-bottom: 52px;
 		background-attachment: scroll; /* fixed trava no iOS */
 	}
 
 	.container {
-		padding: 0 6px;
+		padding: 0 4px;
 		align-items: flex-start;
 	}
 
@@ -570,10 +570,16 @@ body::after {
 		width: 100%;
 	}
 
-	/* Barra de título menor */
+	/* Barra de título */
 	.title-bar {
 		font-size: 12px;
 		padding: 3px 5px;
+		cursor: default; /* sem drag no mobile */
+	}
+
+	/* Conteúdo da janela */
+	.window-content {
+		padding: 10px;
 	}
 
 	/* Perfil empilha verticalmente */
@@ -581,39 +587,55 @@ body::after {
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
-		padding: 14px;
-		gap: 12px;
+		padding: 12px 10px;
+		gap: 10px;
 	}
 
 	.profile-pic {
-		width: 90px;
-		height: 90px;
+		width: 80px;
+		height: 80px;
 	}
 
 	.profile-info h1 {
-		font-size: 18px;
-		margin-bottom: 8px;
+		font-size: 17px;
+		margin-bottom: 6px;
 	}
 
 	.profile-info p {
-		font-size: 13px;
-		line-height: 1.5;
+		font-size: 12.5px;
+		line-height: 1.55;
 	}
 
-	/* Social buttons centralizados */
+	/* Social buttons */
 	.social-section {
 		justify-content: center;
-		gap: 8px;
+		gap: 6px;
+		margin-top: 10px;
 	}
 
 	.social-item {
 		font-size: 12px;
-		padding: 6px 12px;
+		padding: 8px 12px; /* touch target maior */
+	}
+
+	/* Terminal */
+	.terminal-box {
+		padding: 14px 14px;
+		font-size: 12.5px;
 	}
 
 	.terminal-label {
 		font-size: 10px;
 		letter-spacing: 1px;
+	}
+
+	.terminal-cmd {
+		font-size: 12.5px;
+	}
+
+	.terminal-out {
+		font-size: 12px;
+		line-height: 1.55;
 	}
 
 	/* Taskbar: esconde ícones de tray, mantém relógio */
@@ -628,7 +650,8 @@ body::after {
 
 	.start-button {
 		font-size: 12px;
-		padding: 0 8px;
+		padding: 0 10px;
+		height: 30px;
 	}
 
 	.taskbar-item .label {
@@ -636,19 +659,103 @@ body::after {
 	}
 
 	.taskbar-item {
-		padding: 0 8px;
+		padding: 0 10px;
+		height: 30px;
+	}
+
+	/* Botão de idioma não sobrepõe a title-bar */
+	.button {
+		top: 8px;
+		right: 8px;
+		font-size: 0.85em;
+		height: 2.2em;
+		padding: 0.4em 0.6em;
+	}
+
+	/* Desktop icon */
+	.desktop-icon {
+		top: 14px;
+		left: 14px;
+		width: 64px;
+	}
+
+	.desktop-icon-img {
+		font-size: 32px;
+	}
+
+	.desktop-icon-label {
+		font-size: 10px;
+	}
+
+	/* ── Start Menu mobile: ocupa toda a largura ── */
+	.start-menu {
+		width: 100%;
+		border-radius: 6px 6px 0 0;
+		font-size: 14px;
+	}
+
+	.start-menu-header {
+		padding: 10px 14px;
+		/* gradient de coluna perde sentido em 100% — usa cor única */
+		background: #1a4a96;
+	}
+
+	.start-menu-body {
+		flex-direction: column;
+		min-height: auto;
+	}
+
+	.sm-left {
+		flex: none;
+		width: 100%;
+		padding: 4px 0;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+	}
+
+	.sm-right {
+		flex: none;
+		width: 100%;
+		padding: 4px 0;
+	}
+
+	.sm-item {
+		padding: 10px 16px; /* touch target generoso */
+		font-size: 13.5px;
+	}
+
+	.start-menu-footer {
+		/* gradiente horizontal não faz sentido em largura total */
+		background: #1e3e8a;
+		padding: 8px 12px;
+	}
+
+	.sm-search {
+		flex: 1;
+		width: auto;
+		min-width: 0;
 	}
 }
 
-/* Tablet — ajustes intermediários */
+/* ============================================================
+   RESPONSIVO — TABLET (601px – 800px)
+   ============================================================ */
 @media (min-width: 601px) and (max-width: 800px) {
 	body {
-		padding-top: 20px;
+		padding-top: 16px;
 		background-attachment: scroll;
 	}
 
 	.container {
-		padding: 0 12px;
+		padding: 0 10px;
+	}
+
+	.window-content {
+		padding: 16px;
+	}
+
+	.profile-section {
+		padding: 16px;
+		gap: 14px;
 	}
 
 	.profile-info h1 {
@@ -658,6 +765,16 @@ body::after {
 	.profile-pic {
 		width: 100px;
 		height: 100px;
+	}
+
+	.terminal-box {
+		padding: 16px 20px;
+		font-size: 13.5px;
+	}
+
+	/* Start menu: ligeiramente mais estreito que desktop */
+	.start-menu {
+		width: min(430px, 100%);
 	}
 }
 
