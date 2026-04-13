@@ -8,7 +8,7 @@
 - 👩‍💻 I love programming and videogames.
 - 🌷 I'm 22 and passionate about challenges.
 
-### 🖥️ Portfolio
+### Portfolio
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-sunref.github.io-blue?style=for-the-badge&logo=windows95&logoColor=white)](https://sunref.github.io/sunref/index.html)
 
