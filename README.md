@@ -3,35 +3,39 @@
 <td>
 
 ```
-┌────────────────────────────────────────────────────────────┐
-│  fernanda@github  ~  [session: active]                     │
-├────────────────────────────────────────────────────────────┤
-│                                                            │
-│  $ whoami                                                  │
-│  ┌──────────────────────────────────────────────────────┐  │
-│  │  Fernanda · Computer Science Student · IFSP-SBV      │  │
-│  │  22 anos · apaixonada por programação e videogames   │  │
-│  │  apreciadora de desafios · sempre aprendendo         │  │
-│  └──────────────────────────────────────────────────────┘  │
-│                                                            │
-│  $ cat stack.conf                                          │
-│                                                            │
-│  [os]            Linux · Debian                            │
-│  [languages]     C · C++                                   │
-│  [containers]    Docker                                    │
-│  [editor]        Zed Editor                                │
-│                                                            │
-│  $ cat links.txt                                           │
-│                                                            │
-│  [portfolio]     sunref.github.io/sunref/index.html        │
-│  [linkedin]      linkedin.com/in/fernandamartsilva         │
-│                                                            │
-│  $ cat hobbies.txt                                         │
-│                                                            │
-│  videogames · programação · desafios · aprender coisas     │
-│                                                            │
-│  $ _                                                       │
-└────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────┐
+│  fernanda@github  ~  [session: active]           │
+├──────────────────────────────────────────────────┤
+│                                                  │
+│  $ whoami                                        │
+│  ┌────────────────────────────────────────────┐  │
+│  │  Fernanda · Computer Science · IFSP-SBV    │  │
+│  │  · 22 anos · apaixonada por programação    │  │
+│  │  e videogames · sempre aprendendo          │  │
+│  │  · apreciadora de desafios                 │  │
+│  └────────────────────────────────────────────┘  │
+│                                                  │
+│  $ cat stack.conf                                │
+│                                                  │
+│  [os]            Linux · Debian                  │
+│  [languages]     C · C++                         │
+│  [containers]    Docker                          │
+│  [editor]        Zed Editor                      │
+│                                                  │
+│  $ cat links.txt                                 │
+│                                                  │
+│  [portfolio]     sunref.github.io                │
+│                  /sunref/index.html              │
+│  [linkedin]      linkedin.com                    │
+│                  /in/fernandamartsilva           │
+│                                                  │
+│  $ cat hobbies.txt                               │
+│                                                  │
+│  videogames · programação · desafios             │
+│  · aprender coisas novas                         │
+│                                                  │
+│  $ _                                             │
+└──────────────────────────────────────────────────┘
 ```
 
 </td>
