@@ -1,41 +1,70 @@
-<h1 align="center">
-  <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=F798F7&width=435&lines=Hello!+%F0%9F%91%8B;I'm+Fernanda!+%F0%9F%87%A7%F0%9F%87%B7" alt="Typing SVG" />
-  </a>
-</h1>
+<table>
+<tr>
+<td>
 
-- 🌱 Currently studying Computer Science at IFSP-SBV.
-- 👩‍💻 I love programming and videogames.
-- 🌷 I'm 22 and passionate about challenges.
+```
+┌────────────────────────────────────────────────────────────┐
+│  fernanda@github  ~  [session: active]                     │
+├────────────────────────────────────────────────────────────┤
+│                                                            │
+│  $ whoami                                                  │
+│  ┌──────────────────────────────────────────────────────┐  │
+│  │  Fernanda · Computer Science Student · IFSP-SBV      │  │
+│  │  22 anos · apaixonada por programação e videogames   │  │
+│  │  apreciadora de desafios · sempre aprendendo         │  │
+│  └──────────────────────────────────────────────────────┘  │
+│                                                            │
+│  $ cat stack.conf                                          │
+│                                                            │
+│  [os]            Linux · Debian                            │
+│  [languages]     C · C++                                   │
+│  [containers]    Docker                                    │
+│  [editor]        Zed Editor                                │
+│                                                            │
+│  $ cat links.txt                                           │
+│                                                            │
+│  [portfolio]     sunref.github.io/sunref/index.html        │
+│  [linkedin]      linkedin.com/in/fernandamartsilva         │
+│                                                            │
+│  $ cat hobbies.txt                                         │
+│                                                            │
+│  videogames · programação · desafios · aprender coisas     │
+│                                                            │
+│  $ _                                                       │
+└────────────────────────────────────────────────────────────┘
+```
 
-### Portfolio
+</td>
+<td>
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-sunref.github.io-blue?style=for-the-badge&logo=windows95&logoColor=white)](https://sunref.github.io/sunref/index.html)
+```
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠰⣄⣀⣀⣀⣠⠤⠤⠤⠤⢽⣌⢓⠢⢄⡀⠀⠀⠀⠀⢀⡄⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⣙⡦⢄⣀⣀⣿⣿⣿⣿⣷⣶⣥⣹⣦⡙⢋⡉⠉⢩⣝⠁⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢀⡤⣺⣵⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣶⣤⣈⠑⢦⡀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⣀⣠⢔⡫⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡙⢆⠀⠀⠀⠀⠀
+⠀⠀⠀⠈⣩⢏⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣍⠀⡳⣄⠀⠀⠀
+⠀⠀⠀⡴⣳⣿⣿⣿⣿⣿⣿⣿⣿⡿⣿⠟⠉⠀⠀⢻⣿⡿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⡹⡮⣷⡤⠀
+⣀⣠⠞⣕⣿⣿⣿⣿⣿⣿⡿⠟⠉⢰⡃⠀⠀⠀⠀⠀⠙⢷⡙⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧⢱⡀⠀⠀
+⠈⠉⢉⣿⣿⣿⣿⣿⡿⠋⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠒⠉⠁⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇⢧⠀⠀
+⠀⠀⣼⣿⣿⣿⣿⣿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣿⣿⣿⣿⣿⣿⣿⡟⠾⣧⡀
+⠀⠀⣿⣿⣿⣿⣿⣿⢠⡶⠋⠉⠙⡖⢄⠀⠀⠀⠀⠀⢀⣀⠀⢀⣀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀
+⠀⢰⣿⡿⣿⣿⣿⣿⢡⣇⠀⠀⠀⡇⢀⠇⠀⠀⠀⡐⢱⠁⠀⠀⠈⡏⢆⢸⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀
+⠀⠘⡿⡇⠹⡿⢿⣿⠀⠉⠒⠲⠞⠒⠁⠀⠀⠀⠀⠘⢼⡄⠀⠀⡼⣀⢜⣿⣿⣿⣿⢻⣿⣿⡏⠀⠀⠀
+⠀⠀⠃⢹⢀⡇⠘⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠀⣸⣿⠃⡿⠁⢸⣿⣿⠃⠀⠀⠀
+⠀⠀⣤⣾⢸⣷⠀⠘⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⡟⠁⠀⠀⡄⢸⣿⣿⣦⡀⠀⠀
+⠀⠀⠙⢿⣿⣿⣇⠀⣾⣦⣀⢀⠴⠒⢦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣠⠁⠀⢀⣾⣥⣿⢟⡭⠞⠁⠀⠀
+⠀⠀⠀⠀⠈⠻⢿⣆⣿⣿⡟⠁⠒⠊⣉⡦⠅⠀⣀⣀⣀⣤⣤⣶⣾⡏⠀⣰⣿⣿⡯⠗⠋⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠉⠻⡟⠀⠀⠀⢁⠤⢼⠒⠠⠔⠒⠎⣿⣿⣿⣿⣧⣾⡟⠛⠁⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⣞⣻⢁⠀⠀⠀⠀⡠⠊⠈⣖⠆⠀⡈⢹⣿⣿⣿⣿⣿⣿⣷⣦⡄⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⢸⣿⡟⠚⣶⠀⠀⢠⣧⣇⣀⠈⠀⣀⢇⣾⣿⣿⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⣖⣾⣿⣷⡀⡦⢤⠴⡕⠋⠁⣆⠀⠀⢀⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣤⡞⣊⠧⠴⡾⢼⠀⡄⠀⢆⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⢀⣞⣾⣿⣿⣿⣿⣿⣿⣿⣶⣖⡲⠷⢲⢵⠃⠀⠸⣆⠸⣿⣿⣿⣿⣿⣿⣷⡿⡄⠀⠀⠀⠀⠀⠀
+⠀⢰⢻⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⡟⠁⠀⢸⢸⠀⠀⠀⢫⢆⠹⣿⣿⣿⣿⣿⣿⣽⡇⠀⠀⠀⠀⠀⠀
+⠀⠘⣾⣿⣿⣿⣿⣿⣿⣿⣟⡁⢀⠃⠀⠀⠀⡘⠀⠀⠀⠘⡈⣄⣽⣿⣿⣿⣿⣿⡇⡇⠀⠀⠀⠀⠀⠀
+```
 
----
-
-### Technologies that Interest Me:
-
-<p align="left">
-<img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black"/>
-<img src="https://img.shields.io/badge/Debian-D70A53?style=for-the-badge&logo=debian&logoColor=white"/>
-<img src="https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white)"/>
-<img src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white"/>
-<img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white"/>
-<img src="https://img.shields.io/badge/Zed_Editor-000000?style=for-the-badge&logo=zedindustries&logoColor=white"/>
-
----
-
-### Let's connect!
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/fernandamartsilva/)
-
----
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Sunref/Sunref/output/pacman-contribution-graph-dark.svg">
-  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/Sunref/Sunref/output/pacman-contribution-graph.svg">
-  <img alt="pacman contribution graph" src="https://raw.githubusercontent.com/Sunref/Sunref/output/pacman-contribution-graph.svg">
-</picture>
-
-###
+</td>
+</tr>
+</table>
