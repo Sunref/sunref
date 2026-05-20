@@ -3,94 +3,95 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Portfolio</title>
-		<script>
-		  if (!sessionStorage.getItem('authenticated')) {
-		    window.location.replace('login.html');
-		  }
-		</script>
+		<title>Portfolio — sunref_</title>
 		<link rel="stylesheet" href="./css/main.css" />
 	</head>
 	<body>
+		<canvas id="matrix-canvas"></canvas>
+
+		<div id="boot-overlay">
+			<div class="boot-lines"></div>
+		</div>
+
 		<div class="scanline"></div>
 		<div class="scanline"></div>
 		<div class="scanline"></div>
 		<div class="scanline"></div>
 		<div class="scanline"></div>
 
-		<!-- From Uiverse.io by pipic1 -->
 		<button class="button">EN</button>
 
 		<div class="container">
 			<div class="window-wrapper">
 				<div class="window-xp">
 					<div class="title-bar">
-						<div class="title-text">
-							<span>Portfolio</span>
-						</div>
 						<div class="window-buttons">
-							<div class="window-btn" id="btn-minimize">_</div>
-							<div class="window-btn" id="btn-maximize">□</div>
-							<div class="window-btn close" id="btn-close">✕</div>
+							<div class="window-btn" id="btn-minimize"></div>
+							<div class="window-btn" id="btn-maximize"></div>
+							<div class="window-btn close" id="btn-close"></div>
 						</div>
 					</div>
+
 					<div class="window-content">
 						<div class="profile-section">
-							<div class="profile-pic-container">
-								<div class="profile-pic">
-									<img
-										class="profile-pic"
-										src="./images/perfil.jpg"
-									/>
+							<div class="profile-body">
+								<div class="profile-pic-container">
+									<div class="profile-pic">
+										<img src="./images/perfil.jpg" />
+									</div>
 								</div>
-							</div>
-							<div class="profile-info">
-								<h1>
-									Fernanda <br />
-									@sunref_
-								</h1>
-								<p>
-									Olá, meu nome é Fernanda, sou estudante de
-									Ciência da Computação com foco em
-									desenvolvimento de software e programação em
-									C/C++. Possuo base sólida em algoritmos,
-									estruturas de dados e experiência acadêmica
-									com Java, C/C++ e ambientes Linux. Tenho
-									forte interesse em programação de baixo
-									nível e sistemas embarcados, com perfil
-									proativo e aprendizado contínuo.
-								</p>
-								<div class="social-section">
-									<div
-										class="social-item"
-										onclick="
-											window.open(
-												'https://github.com/Sunref',
-											)
-										"
-									>
-										<span>💻 GitHub</span>
+								<div class="profile-info">
+									<h1>Fernanda // @sunref_</h1>
+									<p>
+										Olá! Sou Fernanda, 22 anos, estudante de
+										Ciência da Computação no IFSP-SBV.
+										Trabalho principalmente com C e C++, com
+										foco em programação de baixo nível e
+										sistemas embarcados. Uso Debian no dia a
+										dia, Zed como editor e Docker quando
+										preciso containerizar coisas. Apaixonada
+										por videogames, desafios e sempre
+										aprendendo algo novo.
+									</p>
+									<div class="stack-badges">
+										<span class="badge">C</span>
+										<span class="badge">C++</span>
+										<span class="badge"
+											>Linux · Debian</span
+										>
+										<span class="badge">Docker</span>
+										<span class="badge">Zed Editor</span>
 									</div>
-
-									<div
-										class="social-item"
-										onclick="
-											window.open(
-												'https://linkedin.com/in/fernandamartsilva/',
-											)
-										"
-									>
-										<span>🔗 LinkedIn</span>
-									</div>
-
-									<div
-										class="social-item"
-										onclick="
-											window.location.href =
-												'mailto:martins.fernanda@protonmail.com'
-										"
-									>
-										<span>✉️ Email</span>
+									<div class="social-section">
+										<div
+											class="social-item"
+											onclick="
+												window.open(
+													'https://github.com/Sunref',
+												)
+											"
+										>
+											<span>💻 GitHub</span>
+										</div>
+										<div
+											class="social-item"
+											onclick="
+												window.open(
+													'https://linkedin.com/in/fernandamartsilva/',
+												)
+											"
+										>
+											<span>🔗 LinkedIn</span>
+										</div>
+										<div
+											class="social-item"
+											onclick="
+												window.location.href =
+													'mailto:martins.fernanda@protonmail.com'
+											"
+										>
+											<span>✉️ Email</span>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -105,33 +106,51 @@
 							<div class="terminal-dot yellow"></div>
 							<div class="terminal-dot green"></div>
 						</div>
-						<p class="terminal-label">C/C++</p>
+						<p class="terminal-label">projects // C · C++</p>
 					</div>
 					<div class="terminal-body">
-						<p class="terminal-cmd">[~] NITE</p>
-						<p class="terminal-out">Nano-Inspired Text Editor</p>
+						<p class="terminal-cmd">whoami</p>
 						<p class="terminal-out">
-							Projeto de conclusão de curso que busca desenvolver
-							uma ferramenta de edição de texto/código em modo CLI
-							acessível. Aplicando todos os conhecimentos em
-							linguagem C, utilizando a biblioteca Ncurses.
-							<a href="https://github.com/Sunref/nite">NITE</a>
+							Fernanda · IFSP-SBV · CC · Baixo nível
 						</p>
 
-						<br />
+						<p class="terminal-divider">
+							··················································
+						</p>
 
-						<p class="terminal-cmd">[~] Telegram Class BOT</p>
+						<p class="terminal-cmd">cat nite.md</p>
 						<p class="terminal-out">
-							Projeto embarcado desenvolvido em C++ utilizando uma
-							Raspberry Pi, com foco em integração com APIs e
-							automação via Telegram. Envolve a realização de
-							requisições HTTP com cURL, manipulação de dados e
-							consumo de APIs. O projeto aplica conceitos de
-							sistemas embarcados e comunicação cliente-servidor.
-							<a
-								href="https://github.com/Sunref/Telegram-Class-Bot"
-								>BOT</a
+							<strong style="color: #00e676">NITE</strong> —
+							Nano-Inspired Text Editor
+						</p>
+						<p class="terminal-out">
+							Projeto de conclusão de curso: editor de
+							texto/código em modo CLI acessível, escrito
+							inteiramente em C com a biblioteca Ncurses. &nbsp;<a
+								href="https://github.com/Sunref/nite"
+								>→ github.com/Sunref/nite</a
 							>
+						</p>
+
+						<p class="terminal-divider">
+							··················································
+						</p>
+
+						<p class="terminal-cmd">cat telegram-bot.md</p>
+						<p class="terminal-out">
+							<strong style="color: #00e676"
+								>Telegram Class BOT</strong
+							>
+						</p>
+						<p class="terminal-out">
+							Projeto embarcado em C++ numa Raspberry Pi.
+							Integração com a API do Telegram via requisições
+							HTTP com cURL, automação de avisos de aula.
+							Conceitos de sistemas embarcados e comunicação
+							cliente-servidor. &nbsp;<a
+								href="https://github.com/Sunref/Telegram-Class-Bot"
+								>→ github.com/Sunref/Telegram-Class-Bot</a
+							><span class="terminal-cursor"></span>
 						</p>
 					</div>
 				</aside>
@@ -139,12 +158,14 @@
 		</div>
 
 		<div class="taskbar">
-			<button class="start-button">
-				<span>Iniciar</span>
-			</button>
+			<button class="start-button"><span>Iniciar</span></button>
 			<div class="taskbar-divider"></div>
 			<div class="taskbar-items">
-				<div class="taskbar-item" id="taskbar-portfolio" onclick="taskbarClick()">
+				<div
+					class="taskbar-item"
+					id="taskbar-portfolio"
+					onclick="taskbarClick()"
+				>
 					<span class="icon">🖥️</span>
 					<span class="label">Portfólio</span>
 				</div>
@@ -157,61 +178,149 @@
 			</div>
 		</div>
 
-		<!-- Ícone de desktop (aparece quando janela é fechada) -->
-		<div class="desktop-icon hidden" id="desktop-icon" onclick="openWindow()">
-			<div class="desktop-icon-img">📄</div>
-			<div class="desktop-icon-label">portfolio.txt</div>
+		<!-- Ícone de desktop: sem .hidden, sempre visível -->
+		<div class="desktop-icon" id="desktop-icon" ondblclick="openWindow()">
+			<div class="desktop-icon-img">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 48 48"
+					width="40"
+					height="40"
+					fill="none"
+				>
+					<rect
+						x="2"
+						y="6"
+						width="44"
+						height="32"
+						rx="3"
+						ry="3"
+						stroke="#00c853"
+						stroke-width="2"
+						fill="#060d06"
+					/>
+					<polyline
+						points="10,18 17,24 10,30"
+						stroke="#00e676"
+						stroke-width="2.5"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						fill="none"
+					/>
+					<line
+						x1="20"
+						y1="30"
+						x2="34"
+						y2="30"
+						stroke="#00e676"
+						stroke-width="2.5"
+						stroke-linecap="round"
+					/>
+					<rect
+						x="16"
+						y="38"
+						width="16"
+						height="3"
+						rx="1"
+						fill="#00c85355"
+					/>
+					<line
+						x1="10"
+						y1="44"
+						x2="38"
+						y2="44"
+						stroke="#00c85377"
+						stroke-width="1.5"
+						stroke-linecap="round"
+					/>
+				</svg>
+			</div>
+			<div class="desktop-icon-label">terminal</div>
 		</div>
 
-		<!-- Menu Iniciar estilo Windows 7 -->
 		<div class="start-menu hidden" id="start-menu">
 			<div class="start-menu-header">
-				<img src="./images/perfil.jpg" class="sm-avatar" alt="Fernanda" />
+				<img
+					src="./images/perfil.jpg"
+					class="sm-avatar"
+					alt="Fernanda"
+				/>
 				<span class="sm-username">Fernanda</span>
 			</div>
 			<div class="start-menu-body">
 				<div class="sm-left">
-					<div class="sm-item" onclick="window.open('https://github.com/Sunref/nite')">
-						<span class="sm-icon">📝</span>
-						<span>NITE</span>
+					<div
+						class="sm-item"
+						onclick="window.open('https://github.com/Sunref/nite')"
+					>
+						<span class="sm-icon">📝</span><span>NITE</span>
 					</div>
-					<div class="sm-item" onclick="window.open('https://github.com/Sunref/Telegram-Class-Bot')">
-						<span class="sm-icon">🤖</span>
-						<span>Telegram Bot</span>
+					<div
+						class="sm-item"
+						onclick="
+							window.open(
+								'https://github.com/Sunref/Telegram-Class-Bot',
+							)
+						"
+					>
+						<span class="sm-icon">🤖</span><span>Telegram Bot</span>
 					</div>
 					<div class="sm-separator"></div>
 					<div class="sm-item sm-all-programs">
-						<span>Todos os Programas</span>
-						<span>▶</span>
+						<span>Todos os Programas</span><span>▶</span>
 					</div>
 				</div>
 				<div class="sm-right">
-					<div class="sm-item" onclick="window.open('https://github.com/Sunref')">
-						<span class="sm-icon">💻</span>
-						<span>GitHub</span>
+					<div
+						class="sm-item"
+						onclick="window.open('https://github.com/Sunref')"
+					>
+						<span class="sm-icon">💻</span><span>GitHub</span>
 					</div>
-					<div class="sm-item" onclick="window.open('https://linkedin.com/in/fernandamartsilva/')">
-						<span class="sm-icon">🔗</span>
-						<span>LinkedIn</span>
+					<div
+						class="sm-item"
+						onclick="
+							window.open(
+								'https://linkedin.com/in/fernandamartsilva/',
+							)
+						"
+					>
+						<span class="sm-icon">🔗</span><span>LinkedIn</span>
 					</div>
-					<div class="sm-item" onclick="window.location.href='mailto:martins.fernanda@protonmail.com'">
-						<span class="sm-icon">✉️</span>
-						<span>Email</span>
+					<div
+						class="sm-item"
+						onclick="
+							window.location.href =
+								'mailto:martins.fernanda@protonmail.com'
+						"
+					>
+						<span class="sm-icon">✉️</span><span>Email</span>
 					</div>
 					<div class="sm-separator"></div>
-					<div class="sm-item" onclick="openWindow(); closeStartMenu()">
-						<span class="sm-icon">📁</span>
-						<span>Portfólio</span>
+					<div
+						class="sm-item"
+						onclick="
+							openWindow();
+							closeStartMenu();
+						"
+					>
+						<span class="sm-icon">📁</span><span>Portfólio</span>
 					</div>
 				</div>
 			</div>
 			<div class="start-menu-footer">
 				<div class="sm-search">
 					<span>🔍</span>
-					<input type="text" placeholder="Pesquisar programas e arquivos" />
+					<input type="text" placeholder="Pesquisar" />
 				</div>
 				<div class="sm-power-group">
-					<button class="sm-power-btn" onclick="shutdownPC()" title="Desligar">⏻</button>
+					<button
+						class="sm-power-btn"
+						onclick="shutdownPC()"
+						title="Desligar"
+					>
+						⏻
+					</button>
 				</div>
 			</div>
 		</div>

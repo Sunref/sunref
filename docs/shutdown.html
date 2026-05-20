@@ -1,194 +1,322 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Desligando...</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Desligando...</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
 
-    body {
-      background: #000;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-family: "Segoe UI", "Tahoma", sans-serif;
-      color: #fff;
-      overflow: hidden;
-      user-select: none;
-    }
+			body {
+				background: #000;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				font-family:
+					"JetBrains Mono", "Fira Code", "Courier New", monospace;
+				color: #00c853;
+				overflow: hidden;
+				user-select: none;
+			}
 
-    /* ── FASE 1 – Desligando ── */
-    #phase-shutdown {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 32px;
-      transition: opacity 1s ease;
-    }
+			/* katakana de fundo */
+			#matrix-canvas {
+				position: fixed;
+				inset: 0;
+				z-index: 0;
+				opacity: 0.12;
+				pointer-events: none;
+			}
 
+			/* scanlines */
+			body::before {
+				content: "";
+				position: fixed;
+				inset: 0;
+				background: repeating-linear-gradient(
+					0deg,
+					rgba(0, 0, 0, 0.13) 0px,
+					rgba(0, 0, 0, 0.13) 1px,
+					transparent 2px,
+					transparent 4px
+				);
+				pointer-events: none;
+				z-index: 1;
+			}
 
+			/* ── FASE 1 – Desligando ── */
+			#phase-shutdown {
+				position: relative;
+				z-index: 2;
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 6px;
+				width: min(560px, 90vw);
+				transition: opacity 1s ease;
+			}
 
-    /* Texto + dots animados */
-    .shutdown-label {
-      font-size: 17px;
-      font-weight: 300;
-      letter-spacing: 1.5px;
-      color: rgba(255, 255, 255, 0.85);
-    }
-    .dots::after {
-      content: '';
-      animation: dots 1.6s steps(4, end) infinite;
-    }
-    @keyframes dots {
-      0%   { content: ''; }
-      25%  { content: '.'; }
-      50%  { content: '..'; }
-      75%  { content: '...'; }
-      100% { content: ''; }
-    }
+			.boot-line {
+				font-size: 13px;
+				line-height: 1.8;
+				white-space: pre;
+				overflow: hidden;
+				max-height: 0;
+				transition: max-height 0.01s;
+				letter-spacing: 0.3px;
+			}
+			.boot-line.visible {
+				max-height: 40px;
+			}
 
-    /* Spinner estilo Win7 (6 bolinhas girando) */
-    .spinner {
-      position: relative;
-      width: 48px;
-      height: 48px;
-    }
-    .spinner-dot {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #4da6ff;
-      top: 50%;
-      left: 50%;
-      margin: -4px 0 0 -4px;
-      animation: spinnerFade 1.2s linear infinite;
-    }
-    .spinner-dot:nth-child(1) { transform: rotate(  0deg) translateY(-18px); animation-delay: 0s; }
-    .spinner-dot:nth-child(2) { transform: rotate( 60deg) translateY(-18px); animation-delay: -1.0s; }
-    .spinner-dot:nth-child(3) { transform: rotate(120deg) translateY(-18px); animation-delay: -0.8s; }
-    .spinner-dot:nth-child(4) { transform: rotate(180deg) translateY(-18px); animation-delay: -0.6s; }
-    .spinner-dot:nth-child(5) { transform: rotate(240deg) translateY(-18px); animation-delay: -0.4s; }
-    .spinner-dot:nth-child(6) { transform: rotate(300deg) translateY(-18px); animation-delay: -0.2s; }
-    @keyframes spinnerFade {
-      0%, 39% { opacity: 0.15; }
-      40%      { opacity: 1; }
-      100%     { opacity: 0.15; }
-    }
+			.bl-dim {
+				color: #1a5a2a;
+			}
+			.bl-ok {
+				color: #00e676;
+			}
+			.bl-warn {
+				color: #ffd740;
+			}
+			.bl-err {
+				color: #ff5252;
+			}
+			.bl-info {
+				color: #40c4ff;
+			}
 
-    /* ── FASE 2 – Desligado ── */
-    #phase-off {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      gap: 40px;
-      opacity: 0;
-      transition: opacity 1.2s ease;
-    }
-    #phase-off.visible {
-      display: flex;
-    }
-    #phase-off.faded {
-      opacity: 1;
-    }
+			/* cursor piscando na última linha */
+			.term-cursor {
+				display: inline-block;
+				width: 8px;
+				height: 13px;
+				background: #00c853;
+				vertical-align: middle;
+				box-shadow: 0 0 6px #00c853;
+				animation: blink 1s step-end infinite;
+			}
+			@keyframes blink {
+				0%,
+				100% {
+					opacity: 1;
+				}
+				50% {
+					opacity: 0;
+				}
+			}
 
-    .off-message {
-      font-size: 15px;
-      font-weight: 300;
-      color: rgba(255, 255, 255, 0.45);
-      letter-spacing: 1px;
-      text-align: center;
-    }
+			/* ── FASE 2 – Desligado ── */
+			#phase-off {
+				position: relative;
+				z-index: 2;
+				display: none;
+				flex-direction: column;
+				align-items: center;
+				gap: 32px;
+				opacity: 0;
+				transition: opacity 1.2s ease;
+			}
+			#phase-off.visible {
+				display: flex;
+			}
+			#phase-off.faded {
+				opacity: 1;
+			}
 
-    /* Botão de ligar */
-    .power-btn {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.18);
-      background: radial-gradient(circle at 40% 35%,
-        rgba(80, 120, 200, 0.25) 0%,
-        rgba(10, 20, 60, 0.6) 100%
-      );
-      color: rgba(255, 255, 255, 0.55);
-      font-size: 26px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: border-color 0.2s, color 0.2s, box-shadow 0.2s;
-      box-shadow: 0 0 10px rgba(60, 120, 255, 0.15);
-    }
-    .power-btn:hover {
-      border-color: rgba(100, 180, 255, 0.6);
-      color: rgba(255, 255, 255, 0.9);
-      box-shadow: 0 0 22px rgba(60, 140, 255, 0.45);
-    }
+			.off-message {
+				font-size: 13px;
+				color: #1a5a2a;
+				letter-spacing: 1px;
+				text-align: center;
+			}
+			.off-message span {
+				color: #00c853;
+			}
 
-    .power-hint {
-      font-size: 11px;
-      color: rgba(255, 255, 255, 0.2);
-      letter-spacing: 0.5px;
-    }
-  </style>
-</head>
-<body>
+			.power-btn {
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				border: 1px solid #00c85355;
+				background: transparent;
+				color: #00c85377;
+				font-size: 24px;
+				cursor: pointer;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition:
+					border-color 0.2s,
+					color 0.2s,
+					box-shadow 0.2s;
+				box-shadow: 0 0 10px #00c85322;
+			}
+			.power-btn:hover {
+				border-color: #00c853;
+				color: #00e676;
+				box-shadow: 0 0 22px #00c85366;
+			}
 
-  <!-- FASE 1: animação de desligamento -->
-  <div id="phase-shutdown">
+			.power-hint {
+				font-size: 11px;
+				color: #0f3a1a;
+				letter-spacing: 1px;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="matrix-canvas"></canvas>
 
+		<div id="phase-shutdown"></div>
 
-    <div class="spinner">
-      <div class="spinner-dot"></div>
-      <div class="spinner-dot"></div>
-      <div class="spinner-dot"></div>
-      <div class="spinner-dot"></div>
-      <div class="spinner-dot"></div>
-      <div class="spinner-dot"></div>
-    </div>
+		<div id="phase-off">
+			<p class="off-message">
+				// <span>É seguro desligar o computador agora.</span>
+			</p>
+			<button class="power-btn" onclick="powerOn()" title="Ligar">
+				⏻
+			</button>
+			<p class="power-hint">[ clique para ligar novamente ]</p>
+		</div>
 
-    <p class="shutdown-label">Desligando<span class="dots"></span></p>
-  </div>
+		<script>
+			// katakana estático
+			(function () {
+				var canvas = document.getElementById("matrix-canvas");
+				var ctx = canvas.getContext("2d");
+				var katakana =
+					"アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン";
+				var fontSize = 14;
+				var chars = [];
 
-  <!-- FASE 2: tela preta "desligado" -->
-  <div id="phase-off">
-    <p class="off-message">É seguro desligar o computador agora.</p>
-    <button class="power-btn" onclick="powerOn()" title="Ligar">⏻</button>
-    <p class="power-hint">clique para ligar novamente</p>
-  </div>
+				function populate() {
+					canvas.width = window.innerWidth;
+					canvas.height = window.innerHeight;
+					chars = [];
+					var cols = Math.floor(canvas.width / fontSize);
+					var rows = Math.floor(canvas.height / fontSize);
+					for (var c = 0; c < cols; c++) {
+						for (var r = 0; r < rows; r++) {
+							if (Math.random() > 0.65) continue;
+							chars.push({
+								x: c * fontSize,
+								y: (r + 1) * fontSize,
+								ch: katakana[
+									Math.floor(Math.random() * katakana.length)
+								],
+								opacity: 0.04 + Math.random() * 0.13,
+							});
+						}
+					}
+				}
 
-  <script>
-    // Limpa autenticação — terá de logar novamente
-    sessionStorage.removeItem('authenticated');
+				function draw() {
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
+					ctx.font = fontSize + 'px "JetBrains Mono", monospace';
+					chars.forEach(function (c) {
+						ctx.fillStyle = "rgba(0,200,80," + c.opacity + ")";
+						ctx.fillText(c.ch, c.x, c.y);
+					});
+				}
 
-    var phaseShutdown = document.getElementById('phase-shutdown');
-    var phaseOff      = document.getElementById('phase-off');
+				populate();
+				draw();
+				window.addEventListener("resize", function () {
+					populate();
+					draw();
+				});
+				setInterval(function () {
+					var n = Math.floor(chars.length * 0.02);
+					for (var i = 0; i < n; i++) {
+						chars[Math.floor(Math.random() * chars.length)].ch =
+							katakana[
+								Math.floor(Math.random() * katakana.length)
+							];
+					}
+					draw();
+				}, 800);
+			})();
 
-    // Após 3.5s, apaga o ecrã e mostra fase 2
-    setTimeout(function () {
-      phaseShutdown.style.opacity = '0';
+			// sequência de shutdown
+			var lines = [
+				{
+					text: "[ fernanda@portfolio ] $ sudo shutdown -h now",
+					cls: "bl-info",
+				},
+				{ text: "", cls: "" },
+				{
+					text: "[  OK  ] Stopping portfolio.service...",
+					cls: "bl-ok",
+				},
+				{ text: "[  OK  ] Stopped Network Manager.", cls: "bl-ok" },
+				{
+					text: "[  OK  ] Removed slice User Slice of UID 1000.",
+					cls: "bl-ok",
+				},
+				{
+					text: "[ WARN ] Waiting for process to terminate...",
+					cls: "bl-warn",
+				},
+				{
+					text: "[  OK  ] Reached target System Power Off.",
+					cls: "bl-ok",
+				},
+				{ text: "", cls: "" },
+				{ text: "Syncing filesystems...", cls: "bl-dim" },
+				{ text: "Will now power off.", cls: "bl-err" },
+			];
 
-      setTimeout(function () {
-        phaseShutdown.style.display = 'none';
-        phaseOff.classList.add('visible');
+			var container = document.getElementById("phase-shutdown");
+			var delay = 0;
+			var lineEls = [];
 
-        // Pequeno delay para o display:flex fazer efeito antes do fade
-        requestAnimationFrame(function () {
-          requestAnimationFrame(function () {
-            phaseOff.classList.add('faded');
-          });
-        });
-      }, 1000); // espera o fade-out da fase 1
+			lines.forEach(function (l) {
+				var el = document.createElement("div");
+				el.className = "boot-line" + (l.cls ? " " + l.cls : "");
+				el.textContent = l.text || " ";
+				container.appendChild(el);
+				lineEls.push(el);
 
-    }, 3500);
+				setTimeout(function () {
+					el.classList.add("visible");
+				}, delay);
+				delay += l.text === "" ? 60 : 150 + Math.random() * 80;
+			});
 
-    function powerOn() {
-      window.location.href = 'login.html';
-    }
-  </script>
+			// adiciona cursor piscando na última linha depois que ela aparece
+			setTimeout(function () {
+				var last = lineEls[lineEls.length - 1];
+				var cur = document.createElement("span");
+				cur.className = "term-cursor";
+				last.appendChild(cur);
+			}, delay);
 
-</body>
+			// transição para fase 2
+			var phaseShutdown = document.getElementById("phase-shutdown");
+			var phaseOff = document.getElementById("phase-off");
+
+			setTimeout(function () {
+				phaseShutdown.style.opacity = "0";
+				setTimeout(function () {
+					phaseShutdown.style.display = "none";
+					phaseOff.classList.add("visible");
+					requestAnimationFrame(function () {
+						requestAnimationFrame(function () {
+							phaseOff.classList.add("faded");
+						});
+					});
+				}, 1000);
+			}, delay + 800);
+
+			function powerOn() {
+				window.location.href = "index.html";
+			}
+		</script>
+	</body>
 </html>
