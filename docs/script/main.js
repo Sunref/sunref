@@ -75,7 +75,6 @@ document.getElementById("btn-maximize").addEventListener("click", function () {
 function closeWindow() {
 	windowWrapper.classList.add("hidden");
 	taskbarPort.classList.add("hidden");
-	// ícone do desktop fica sempre visível — não é necessário nenhuma alteração aqui
 	windowState = "closed";
 	closeStartMenu();
 }
@@ -105,6 +104,34 @@ function taskbarClick() {
 	else if (windowState === "normal") minimizeWindow();
 	else if (windowState === "closed") openWindow();
 }
+
+// ===== ÍCONE DO DESKTOP =====
+// FIX 2: suporte a touch — simula dblclick com dois taps rápidos
+(function () {
+	var icon = document.getElementById("desktop-icon");
+	if (!icon) return;
+
+	var isMobileDevice = function () {
+		return window.innerWidth <= 600;
+	};
+	var lastTap = 0;
+
+	icon.addEventListener("touchend", function (e) {
+		var now = Date.now();
+		var diff = now - lastTap;
+		if (diff < 350 && diff > 0) {
+			// dois taps em < 350ms = dblclick
+			e.preventDefault();
+			openWindow();
+		}
+		lastTap = now;
+	});
+
+	// dblclick continua funcionando no desktop
+	icon.addEventListener("dblclick", function () {
+		openWindow();
+	});
+})();
 
 // ===== MENU INICIAR =====
 function toggleStartMenu() {
@@ -143,8 +170,9 @@ function toggleLang() {
 }
 
 // ===== DRAG (só desktop) =====
+// FIX 3: drag completamente desabilitado em mobile/tablet
 var isMobile = function () {
-	return window.innerWidth <= 600;
+	return window.innerWidth <= 800;
 };
 var titleBar = document.querySelector(".title-bar");
 var isDragging = false,
@@ -159,6 +187,7 @@ titleBar.addEventListener("mousedown", dragStart);
 document.addEventListener("mousemove", drag);
 document.addEventListener("mouseup", dragEnd);
 
+// touch só no desktop (>800px)
 titleBar.addEventListener(
 	"touchstart",
 	function (e) {

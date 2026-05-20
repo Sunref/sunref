@@ -8,10 +8,7 @@
 	</head>
 	<body>
 		<canvas id="matrix-canvas"></canvas>
-
-		<div id="boot-overlay">
-			<div class="boot-lines"></div>
-		</div>
+		<div id="boot-overlay"><div class="boot-lines"></div></div>
 
 		<div class="scanline"></div>
 		<div class="scanline"></div>
@@ -31,7 +28,6 @@
 							<div class="window-btn close" id="btn-close"></div>
 						</div>
 					</div>
-
 					<div class="window-content">
 						<div class="profile-section">
 							<div class="profile-body">
@@ -113,11 +109,9 @@
 						<p class="terminal-out">
 							Fernanda · IFSP-SBV · CC · Baixo nível
 						</p>
-
 						<p class="terminal-divider">
 							··················································
 						</p>
-
 						<p class="terminal-cmd">cat nite.md</p>
 						<p class="terminal-out">
 							<strong style="color: #00e676">NITE</strong> —
@@ -131,11 +125,9 @@
 								>→ github.com/Sunref/nite</a
 							>
 						</p>
-
 						<p class="terminal-divider">
 							··················································
 						</p>
-
 						<p class="terminal-cmd">cat telegram-bot.md</p>
 						<p class="terminal-out">
 							<strong style="color: #00e676"
@@ -178,14 +170,12 @@
 			</div>
 		</div>
 
-		<!-- Ícone de desktop: sem .hidden, sempre visível -->
-		<div class="desktop-icon" id="desktop-icon" ondblclick="openWindow()">
+		<!-- FIX 2: sem ondblclick inline — JS gerencia dblclick + double-tap -->
+		<div class="desktop-icon" id="desktop-icon">
 			<div class="desktop-icon-img">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					viewBox="0 0 48 48"
-					width="40"
-					height="40"
 					fill="none"
 				>
 					<rect

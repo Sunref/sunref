@@ -198,7 +198,6 @@ body::after {
 	width: 100%;
 	position: relative;
 	z-index: 3;
-	/* borda terminal externa */
 	border: 1px solid #00c85344;
 	border-radius: 6px;
 	box-shadow:
@@ -208,7 +207,7 @@ body::after {
 }
 
 /* ============================================================
-   TITLE BAR — estilo terminal
+   TITLE BAR
    ============================================================ */
 .window-xp {
 	background: #0a0f0a;
@@ -240,7 +239,6 @@ body::after {
 	text-shadow: 0 0 8px #00c85377;
 }
 
-/* prefixo prompt no título */
 .title-text::before {
 	content: "fernanda@portfolio:~$";
 	color: #40c4ff;
@@ -262,7 +260,7 @@ body::after {
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-	font-size: 0px; /* esconde o texto, só cor */
+	font-size: 0px;
 	border: none;
 	transition: filter 0.15s;
 }
@@ -270,7 +268,6 @@ body::after {
 	filter: brightness(1.3);
 }
 
-/* dots coloridos estilo macOS mas mais sombrios */
 #btn-close {
 	background: #3a0000;
 	box-shadow: 0 0 5px #ff000099;
@@ -295,7 +292,7 @@ body::after {
 }
 
 /* ============================================================
-   WINDOW CONTENT — fundo terminal
+   WINDOW CONTENT
    ============================================================ */
 .window-content {
 	background: #060d06;
@@ -305,7 +302,6 @@ body::after {
 	overflow: hidden;
 }
 
-/* CRT scanlines sobre o conteúdo */
 .window-content::before {
 	content: "";
 	position: absolute;
@@ -330,7 +326,6 @@ body::after {
 	width: 100%;
 }
 
-/* ASCII banner */
 .ascii-banner {
 	background: #040d04;
 	border-bottom: 1px solid #00c85322;
@@ -348,7 +343,6 @@ body::after {
 	display: none;
 }
 
-/* subtítulo dentro do banner */
 .ascii-sub {
 	color: #1a6a3a;
 	font-size: 10px;
@@ -357,7 +351,6 @@ body::after {
 	display: block;
 }
 
-/* corpo: foto + texto */
 .profile-body {
 	display: flex;
 	gap: 20px;
@@ -399,7 +392,6 @@ body::after {
 	line-height: 1.3;
 }
 
-/* simulação de bloco de comentário */
 .profile-info p {
 	color: #7aaa8a;
 	line-height: 1.65;
@@ -459,7 +451,7 @@ body::after {
 }
 
 /* ============================================================
-   TERMINAL BOX (projetos)
+   TERMINAL BOX
    ============================================================ */
 .terminal-box {
 	background: #060d06;
@@ -593,7 +585,7 @@ body::after {
 }
 
 /* ============================================================
-   TASKBAR — mantém estilo XP mas com tom mais escuro/verde
+   TASKBAR
    ============================================================ */
 .taskbar {
 	position: fixed;
@@ -751,12 +743,15 @@ body::after {
 
 /* ============================================================
    DESKTOP ICON
+   FIX 1: posicionado abaixo da taskbar superior, sem sobrepor conteúdo
+   FIX 5: SVG usa width/height 100% p/ respeitar o container
    ============================================================ */
 .desktop-icon {
 	position: fixed;
-	top: 24px;
+	/* FIX 1: desce para baixo da área de conteúdo — fica acima da taskbar */
+	bottom: 52px;
 	left: 24px;
-	width: 72px;
+	width: 64px;
 	text-align: center;
 	cursor: pointer;
 	z-index: 10;
@@ -769,10 +764,19 @@ body::after {
 	background: rgba(0, 200, 80, 0.1);
 }
 
+/* FIX 5: container do SVG com tamanho definido; SVG herda */
 .desktop-icon-img {
-	font-size: 36px;
-	line-height: 1;
+	width: 40px;
+	height: 40px;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	filter: drop-shadow(0 0 6px #00c85377);
+}
+.desktop-icon-img svg {
+	width: 100%;
+	height: 100%;
 }
 
 .desktop-icon-label {
@@ -962,6 +966,7 @@ body::after {
    RESPONSIVO — MOBILE (≤ 600px)
    ============================================================ */
 @media (max-width: 600px) {
+	/* FIX 4: background-attachment scroll no mobile (fixed quebra em iOS/Safari) */
 	body {
 		align-items: flex-start;
 		padding-top: 10px;
@@ -976,9 +981,12 @@ body::after {
 		width: 100%;
 	}
 
+	/* FIX 3: title-bar sem cursor move e altura mínima no mobile */
 	.title-bar {
 		padding: 6px 10px;
 		cursor: default;
+		/* mantém a barra mas deixa claro que não é arrastável */
+		min-height: 32px;
 	}
 	.title-text {
 		font-size: 10px;
@@ -1072,13 +1080,16 @@ body::after {
 		align-items: center;
 	}
 
+	/* FIX 1 mobile: ícone menor e sem risco de sobrepor conteúdo */
 	.desktop-icon {
-		top: 14px;
-		left: 14px;
-		width: 60px;
+		bottom: 52px;
+		left: 12px;
+		width: 54px;
 	}
+	/* FIX 5 mobile: SVG menor */
 	.desktop-icon-img {
-		font-size: 28px;
+		width: 28px;
+		height: 28px;
 	}
 	.desktop-icon-label {
 		font-size: 9px;
@@ -1138,6 +1149,12 @@ body::after {
 	.terminal-box {
 		padding: 16px 20px;
 		font-size: 13px;
+	}
+
+	/* FIX 1 tablet: ícone não sobrepõe */
+	.desktop-icon {
+		bottom: 52px;
+		left: 20px;
 	}
 
 	.start-menu {
