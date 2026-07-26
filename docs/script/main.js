@@ -1,256 +1,40 @@
-// ===== BOOT SEQUENCE =====
-(function () {
-	var overlay = document.getElementById("boot-overlay");
-	if (!overlay) return;
+document.addEventListener("DOMContentLoaded", function () {
+	// ===== NAVEGAÇÃO POR ABAS =====
+	var navItems = document.querySelectorAll(".nav-item");
+	var panels = document.querySelectorAll(".tab-panel");
 
-	var lines = [
-		{ text: "BIOS v2.4.1  —  sunref-pc", cls: "boot-dim" },
-		{ text: "CPU: Intel Core i5  |  RAM: 8192MB OK", cls: "boot-dim" },
-		{ text: "", cls: "" },
-		{ text: "Loading kernel...", cls: "boot-info" },
-		{ text: "[  OK  ] Started udev Kernel Device Manager", cls: "boot-ok" },
-		{
-			text: "[  OK  ] Reached target System Initialization",
-			cls: "boot-ok",
-		},
-		{ text: "[  OK  ] Started Network Manager", cls: "boot-ok" },
-		{
-			text: "[ WARN ] portfolio.service: Loaded with warnings",
-			cls: "boot-warn",
-		},
-		{ text: "[  OK  ] Started portfolio.service", cls: "boot-ok" },
-		{ text: "", cls: "" },
-		{
-			text: "Welcome to sunref-pc  //  fernanda@portfolio",
-			cls: "boot-info",
-		},
-	];
+	navItems.forEach(function (item) {
+		item.addEventListener("click", function () {
+			var target = item.getAttribute("data-tab");
+			var targetPanel = document.getElementById("tab-" + target);
+			if (!targetPanel) return;
 
-	var container = overlay.querySelector(".boot-lines");
-	var delay = 0;
+			navItems.forEach(function (n) {
+				n.classList.remove("active");
+			});
+			item.classList.add("active");
 
-	lines.forEach(function (l) {
-		var el = document.createElement("div");
-		el.className = "boot-line" + (l.cls ? " " + l.cls : "");
-		el.textContent = l.text || " ";
-		container.appendChild(el);
+			panels.forEach(function (p) {
+				p.classList.remove("active");
+			});
+			targetPanel.classList.add("active");
 
-		setTimeout(function () {
-			el.classList.add("visible");
-		}, delay);
-
-		delay += l.text === "" ? 80 : 120 + Math.random() * 60;
+			if (target === "skills") animateSkillBars();
+		});
 	});
 
-	setTimeout(function () {
-		overlay.classList.add("fade-out");
-		setTimeout(function () {
-			overlay.style.display = "none";
-		}, 700);
-	}, delay + 400);
-})();
+	// ===== BARRAS DE SKILL (anima ao entrar na aba) =====
+	function animateSkillBars() {
+		document.querySelectorAll(".skill-bar").forEach(function (bar, i) {
+			setTimeout(function () {
+				bar.classList.add("in-view");
+			}, i * 80);
+		});
+	}
 
-// ===== ELEMENTOS =====
-var windowWrapper = document.querySelector(".window-wrapper");
-var desktopIcon = document.getElementById("desktop-icon");
-var taskbarPort = document.getElementById("taskbar-portfolio");
-var startMenuEl = document.getElementById("start-menu");
-var windowState = "normal";
-
-// ===== BOTÕES DA JANELA =====
-document.getElementById("btn-close").addEventListener("click", closeWindow);
-document.getElementById("btn-minimize").addEventListener("click", function () {
-	if (windowState === "normal") minimizeWindow();
-	else if (windowState === "minimized") restoreWindow();
-});
-document.getElementById("btn-maximize").addEventListener("click", function () {
-	this.style.transform = "scale(0.95)";
-	var s = this;
-	setTimeout(function () {
-		s.style.transform = "scale(1)";
-	}, 100);
-});
-
-// ===== FUNÇÕES DE JANELA =====
-function closeWindow() {
-	windowWrapper.classList.add("hidden");
-	taskbarPort.classList.add("hidden");
-	windowState = "closed";
-	closeStartMenu();
-}
-
-function minimizeWindow() {
-	windowWrapper.classList.add("hidden");
-	taskbarPort.classList.add("active");
-	windowState = "minimized";
-	closeStartMenu();
-}
-
-function restoreWindow() {
-	windowWrapper.classList.remove("hidden");
-	taskbarPort.classList.remove("active");
-	windowState = "normal";
-}
-
-function openWindow() {
-	windowWrapper.classList.remove("hidden");
-	taskbarPort.classList.remove("hidden");
-	taskbarPort.classList.remove("active");
-	windowState = "normal";
-}
-
-function taskbarClick() {
-	if (windowState === "minimized") restoreWindow();
-	else if (windowState === "normal") minimizeWindow();
-	else if (windowState === "closed") openWindow();
-}
-
-// ===== ÍCONE DO DESKTOP =====
-// FIX 2: suporte a touch — simula dblclick com dois taps rápidos
-(function () {
-	var icon = document.getElementById("desktop-icon");
-	if (!icon) return;
-
-	var isMobileDevice = function () {
-		return window.innerWidth <= 600;
-	};
-	var lastTap = 0;
-
-	icon.addEventListener("touchend", function (e) {
-		var now = Date.now();
-		var diff = now - lastTap;
-		if (diff < 350 && diff > 0) {
-			// dois taps em < 350ms = dblclick
-			e.preventDefault();
-			openWindow();
-		}
-		lastTap = now;
-	});
-
-	// dblclick continua funcionando no desktop
-	icon.addEventListener("dblclick", function () {
-		openWindow();
-	});
-})();
-
-// ===== MENU INICIAR =====
-function toggleStartMenu() {
-	startMenuEl.classList.toggle("hidden");
-}
-function closeStartMenu() {
-	startMenuEl.classList.add("hidden");
-}
-
-document.querySelector(".start-button").addEventListener("click", function (e) {
-	e.stopPropagation();
-	toggleStartMenu();
-});
-
-document.addEventListener("click", function (e) {
-	if (
-		!startMenuEl.contains(e.target) &&
-		!document.querySelector(".start-button").contains(e.target)
-	) {
-		closeStartMenu();
+	// anima uma vez se a página carregar já na aba de skills (ex: link direto)
+	var activeNav = document.querySelector(".nav-item.active");
+	if (activeNav && activeNav.dataset.tab === "skills") {
+		animateSkillBars();
 	}
 });
-
-// ===== DESLIGAR =====
-function shutdownPC() {
-	window.location.href = "shutdown.html";
-}
-
-// ===== TROCA DE IDIOMA =====
-document.querySelector(".button")?.addEventListener("click", toggleLang);
-
-function toggleLang() {
-	var page = window.location.pathname.split("/").pop();
-	window.location.href =
-		page === "indexEN.html" ? "index.html" : "indexEN.html";
-}
-
-// ===== DRAG (só desktop) =====
-// FIX 3: drag completamente desabilitado em mobile/tablet
-var isMobile = function () {
-	return window.innerWidth <= 800;
-};
-var titleBar = document.querySelector(".title-bar");
-var isDragging = false,
-	currentX = 0,
-	currentY = 0;
-var initialX = 0,
-	initialY = 0,
-	xOffset = 0,
-	yOffset = 0;
-
-titleBar.addEventListener("mousedown", dragStart);
-document.addEventListener("mousemove", drag);
-document.addEventListener("mouseup", dragEnd);
-
-// touch só no desktop (>800px)
-titleBar.addEventListener(
-	"touchstart",
-	function (e) {
-		if (!isMobile()) dragStart(e);
-	},
-	{ passive: false },
-);
-document.addEventListener(
-	"touchmove",
-	function (e) {
-		if (!isMobile()) drag(e);
-	},
-	{ passive: false },
-);
-document.addEventListener("touchend", function () {
-	if (!isMobile()) dragEnd();
-});
-
-function dragStart(e) {
-	if (e.target.classList.contains("window-btn")) return;
-	if (isMobile()) return;
-	var cx = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
-	var cy = e.type === "touchstart" ? e.touches[0].clientY : e.clientY;
-	initialX = cx - xOffset;
-	initialY = cy - yOffset;
-	isDragging = true;
-}
-
-function drag(e) {
-	if (!isDragging) return;
-	e.preventDefault();
-	var cx = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
-	var cy = e.type === "touchmove" ? e.touches[0].clientY : e.clientY;
-	currentX = cx - initialX;
-	currentY = cy - initialY;
-	xOffset = currentX;
-	yOffset = currentY;
-	windowWrapper.style.transform =
-		"translate(" + currentX + "px, " + currentY + "px)";
-	windowWrapper.style.position = "relative";
-}
-
-function dragEnd() {
-	if (!isDragging) return;
-	initialX = currentX;
-	initialY = currentY;
-	isDragging = false;
-}
-
-// ===== RELÓGIO =====
-function updateClock() {
-	var now = new Date();
-	var h = String(now.getHours()).padStart(2, "0");
-	var m = String(now.getMinutes()).padStart(2, "0");
-	var el = document.getElementById("clock");
-	if (el) el.textContent = h + ":" + m;
-}
-updateClock();
-setInterval(updateClock, 1000);
-
-// ===== TYPED CURSOR no terminal =====
-(function () {
-	var cursor = document.querySelector(".terminal-cursor");
-	if (!cursor) return;
-	// pisca via CSS
-})();

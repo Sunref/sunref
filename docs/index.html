@@ -1,320 +1,298 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Portfolio — sunref_</title>
+		<title>sunref_ // Fernanda</title>
 		<link rel="stylesheet" href="./css/main.css" />
 	</head>
 	<body>
-		<canvas id="matrix-canvas"></canvas>
-		<div id="boot-overlay"><div class="boot-lines"></div></div>
-
-		<div class="scanline"></div>
-		<div class="scanline"></div>
+		<div class="bg-ascii"></div>
 		<div class="scanline"></div>
 		<div class="scanline"></div>
 		<div class="scanline"></div>
 
-		<button class="button">EN</button>
-
-		<div class="container">
-			<div class="window-wrapper">
-				<div class="window-xp">
-					<div class="title-bar">
-						<div class="window-buttons">
-							<div class="window-btn" id="btn-minimize"></div>
-							<div class="window-btn" id="btn-maximize"></div>
-							<div class="window-btn close" id="btn-close"></div>
-						</div>
-					</div>
-					<div class="window-content">
-						<div class="profile-section">
-							<div class="profile-body">
-								<div class="profile-pic-container">
-									<div class="profile-pic">
-										<img src="./images/perfil.jpg" />
-									</div>
-								</div>
-								<div class="profile-info">
-									<h1>Fernanda // @sunref_</h1>
-									<p>
-										Olá! Sou Fernanda, 22 anos, estudante de
-										Ciência da Computação no IFSP-SBV.
-										Trabalho principalmente com C e C++, com
-										foco em programação de baixo nível e
-										sistemas embarcados. Uso Debian no dia a
-										dia, Zed como editor e Docker quando
-										preciso containerizar coisas. Apaixonada
-										por videogames, desafios e sempre
-										aprendendo algo novo.
-									</p>
-									<div class="stack-badges">
-										<span class="badge">C</span>
-										<span class="badge">C++</span>
-										<span class="badge"
-											>Linux · Debian</span
-										>
-										<span class="badge">Docker</span>
-										<span class="badge">Zed Editor</span>
-									</div>
-									<div class="social-section">
-										<div
-											class="social-item"
-											onclick="
-												window.open(
-													'https://github.com/Sunref',
-												)
-											"
-										>
-											<span>💻 GitHub</span>
-										</div>
-										<div
-											class="social-item"
-											onclick="
-												window.open(
-													'https://linkedin.com/in/fernandamartsilva/',
-												)
-											"
-										>
-											<span>🔗 LinkedIn</span>
-										</div>
-										<div
-											class="social-item"
-											onclick="
-												window.location.href =
-													'mailto:martins.fernanda@protonmail.com'
-											"
-										>
-											<span>✉️ Email</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+		<div class="frame">
+			<div class="topbar">
+				<div class="stack-badges">
+					<span class="badge">C</span>
+					<span class="badge">C++</span>
+					<span class="badge">Linux · Debian</span>
+					<span class="badge">Docker</span>
+					<span class="badge">Zed Editor</span>
 				</div>
+			</div>
 
-				<aside class="terminal-box">
-					<div class="terminal-header">
-						<div class="terminal-dots">
-							<div class="terminal-dot red"></div>
-							<div class="terminal-dot yellow"></div>
-							<div class="terminal-dot green"></div>
-						</div>
-						<p class="terminal-label">projects // C · C++</p>
+			<div class="layout">
+				<aside class="sidebar">
+					<div class="identity">
+						<h1>Fernanda <span class="identity-tag">// sunref_</span></h1>
+						<p class="role">Low-Level &amp; Embedded Systems Developer</p>
 					</div>
-					<div class="terminal-body">
-						<p class="terminal-cmd">whoami</p>
-						<p class="terminal-out">
-							Fernanda · IFSP-SBV · CC · Baixo nível
-						</p>
-						<p class="terminal-divider">
-							··················································
-						</p>
-						<p class="terminal-cmd">cat nite.md</p>
-						<p class="terminal-out">
-							<strong style="color: #00e676">NITE</strong> —
-							Nano-Inspired Text Editor
-						</p>
-						<p class="terminal-out">
-							Projeto de conclusão de curso: editor de
-							texto/código em modo CLI acessível, escrito
-							inteiramente em C com a biblioteca Ncurses. &nbsp;<a
-								href="https://github.com/Sunref/nite"
-								>→ github.com/Sunref/nite</a
-							>
-						</p>
-						<p class="terminal-divider">
-							··················································
-						</p>
-						<p class="terminal-cmd">cat telegram-bot.md</p>
-						<p class="terminal-out">
-							<strong style="color: #00e676"
-								>Telegram Class BOT</strong
-							>
-						</p>
-						<p class="terminal-out">
-							Projeto embarcado em C++ numa Raspberry Pi.
-							Integração com a API do Telegram via requisições
-							HTTP com cURL, automação de avisos de aula.
-							Conceitos de sistemas embarcados e comunicação
-							cliente-servidor. &nbsp;<a
-								href="https://github.com/Sunref/Telegram-Class-Bot"
-								>→ github.com/Sunref/Telegram-Class-Bot</a
-							><span class="terminal-cursor"></span>
-						</p>
+
+					<nav class="main-nav" id="main-nav">
+						<button class="nav-item active" data-tab="home">
+							<span class="nav-dot"></span>Home
+						</button>
+						<button class="nav-item" data-tab="skills">
+							<span class="nav-dot"></span>Skills
+						</button>
+						<button class="nav-item" data-tab="projects">
+							<span class="nav-dot"></span>Projects
+						</button>
+						<button class="nav-item" data-tab="contact">
+							<span class="nav-dot"></span>Contact
+						</button>
+					</nav>
+
+					<div class="sidebar-footer">
+						<span>© Fernanda — sunref_</span>
 					</div>
 				</aside>
+
+				<main class="stage">
+					<!-- HOME -->
+					<section class="tab-panel active" id="tab-home">
+						<div class="stage-header">
+							<span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+							<p class="stage-label">~/home</p>
+						</div>
+						<div class="stage-body">
+							<p class="cmd">whoami</p>
+							<p class="out">Fernanda · 22 · IFSP-SBV · Computer Science</p>
+
+							<p class="cmd">cat about.md</p>
+							<p class="out about-text">
+								Hey! I'm Fernanda Martins da Silva, a 22-year-old Computer Science student at IFSP and a Computer Technician. I'm passionate about embedded systems and low-level programming, and I enjoy building software with a focus on C and C++, especially terminal applications and Linux environments.
+
+								My main project is NITE, a Nano-inspired text editor written in C with ncurses, where I explored memory management, terminal programming, and software architecture. I also have experience with Java, SQL, PHP, HTML, CSS, JavaScript, Git, and containerized development using Podman.
+
+								I'm passionate about solving problems and continuously improving as a software developer, always exploring new tools, technologies, and programming languages to expand my knowledge and build better software.
+							</p>
+						</div>
+					</section>
+
+					<!-- SKILLS -->
+					<section class="tab-panel" id="tab-skills">
+						<div class="stage-header">
+							<span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+							<p class="stage-label">~/skills</p>
+						</div>
+						<div class="stage-body">
+							<p class="cmd">cat stack.md</p>
+
+							<div class="skill-bars">
+								<div class="skill-bar" style="--level: 75%">
+									<div class="skill-bar-top">
+										<span class="skill-name">C</span>
+										<span class="skill-pct">75%</span>
+									</div>
+									<div class="skill-track"><div class="skill-fill"></div></div>
+								</div>
+
+								<div class="skill-bar" style="--level: 50%">
+									<div class="skill-bar-top">
+										<span class="skill-name">C++</span>
+										<span class="skill-pct">50%</span>
+									</div>
+									<div class="skill-track"><div class="skill-fill"></div></div>
+								</div>
+
+								<div class="skill-bar" style="--level: 60%">
+									<div class="skill-bar-top">
+										<span class="skill-name">Linux / Debian</span>
+										<span class="skill-pct">60%</span>
+									</div>
+									<div class="skill-track"><div class="skill-fill"></div></div>
+								</div>
+
+								<div class="skill-bar" style="--level: 45%">
+									<div class="skill-bar-top">
+										<span class="skill-name">Bash / Shell / Python</span>
+										<span class="skill-pct">45%</span>
+									</div>
+									<div class="skill-track"><div class="skill-fill"></div></div>
+								</div>
+
+								<div class="skill-bar" style="--level: 85%">
+									<div class="skill-bar-top">
+										<span class="skill-name">Git</span>
+										<span class="skill-pct">85%</span>
+									</div>
+									<div class="skill-track"><div class="skill-fill"></div></div>
+								</div>
+
+								<div class="skill-bar" style="--level: 65%">
+									<div class="skill-bar-top">
+										<span class="skill-name">Docker</span>
+										<span class="skill-pct">65%</span>
+									</div>
+									<div class="skill-track"><div class="skill-fill"></div></div>
+								</div>
+
+								<div class="skill-bar" style="--level: 70%">
+									<div class="skill-bar-top">
+										<span class="skill-name">Web Development</span>
+										<span class="skill-pct">70%</span>
+									</div>
+									<div class="skill-track"><div class="skill-fill"></div></div>
+								</div>
+
+								<div class="skill-bar" style="--level: 45%">
+									<div class="skill-bar-top">
+										<span class="skill-name">QA</span>
+										<span class="skill-pct">45%</span>
+									</div>
+									<div class="skill-track"><div class="skill-fill"></div></div>
+								</div>
+
+								<div class="skill-bar" style="--level: 50%">
+									<div class="skill-bar-top">
+										<span class="skill-name">SQL</span>
+										<span class="skill-pct">50%</span>
+									</div>
+									<div class="skill-track"><div class="skill-fill"></div></div>
+								</div>
+							</div>
+							<p class="skill-note">// levels are self-assessed, updated as I go</p>
+						</div>
+					</section>
+
+					<!-- PROJECTS -->
+					<section class="tab-panel" id="tab-projects">
+						<div class="stage-header">
+							<span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+							<p class="stage-label">~/projects</p>
+						</div>
+						<div class="stage-body">
+							<p class="cmd">ls -la projects/</p>
+
+							<div class="project-list">
+								<a class="project-card" href="https://github.com/Sunref/Final-Course-Project-NITE" target="_blank" rel="noopener">
+									<div class="project-card-top">
+										<span class="project-name">NITE</span>
+										<span class="project-arrow">→</span>
+									</div>
+									<p class="project-desc">
+										Nano-Inspired Text Editor. Final course project: an accessible CLI-based text/code editor written entirely in C using the Ncurses library. If you would like to follow the project's progress, check out the official repository: github.com/Sunref/nite
+									</p>
+									<div class="project-tags">
+										<span class="badge">C</span>
+										<span class="badge">Ncurses</span>
+										<span class="badge">CLI</span>
+									</div>
+									<span class="project-link">github.com/Sunref/Final-Course-Project-NITE</span>
+								</a>
+
+								<div class="project-card no-link">
+									<div class="project-card-top">
+										<span class="project-name">Boa Vista Tourism</span>
+									</div>
+									<p class="project-desc">
+										Academic team project built as Scrum Master leading a
+										multidisciplinary group. Developed a responsive admin
+										dashboard in PHP, JavaScript and MariaDB for managing
+										tourism equipment — running sprints, agile ceremonies
+										and team integration — applies agile methodology and
+										full-stack web development concepts.
+									</p>
+									<div class="project-tags">
+										<span class="badge">PHP</span>
+										<span class="badge">JavaScript</span>
+										<span class="badge">MariaDB</span>
+										<span class="badge">Scrum</span>
+									</div>
+									<span class="project-link">academic project — no public repository</span>
+								</div>
+
+								<a class="project-card" href="https://github.com/Sunref/Telegram-Class-Bot" target="_blank" rel="noopener">
+									<div class="project-card-top">
+										<span class="project-name">Telegram Class BOT</span>
+										<span class="project-arrow">→</span>
+									</div>
+									<p class="project-desc">
+										Embedded project in C++ running on a
+										Raspberry Pi. Telegram API integration
+										via HTTP requests with cURL, automating
+										class notifications — applies embedded
+										systems and client-server communication
+										concepts.
+									</p>
+									<div class="project-tags">
+										<span class="badge">C++</span>
+										<span class="badge">Raspberry Pi</span>
+										<span class="badge">cURL</span>
+									</div>
+									<span class="project-link">github.com/Sunref/Telegram-Class-Bot</span>
+								</a>
+
+								<a class="project-card" href="https://github.com/Sunref/wearever" target="_blank" rel="noopener">
+									<div class="project-card-top">
+										<span class="project-name">wearever</span>
+										<span class="project-arrow">→</span>
+									</div>
+									<p class="project-desc">
+										Weather app built in Java following MVVM, with local persistence via SQLite. Integrates the OpenWeatherMap API through parallelized HTTP calls for city search and forecast data, with pure-Java utilities extracted for unit testability — applies mobile app architecture and API integration concepts.
+									</p>
+									<div class="project-tags">
+										<span class="badge">Android</span>
+										<span class="badge">Java</span>
+										<span class="badge">OpenWeatherMap API</span>
+									</div>
+									<span class="project-link">github.com/Sunref/Telegram-Class-Bot</span>
+								</a>
+
+								<a class="project-card" href="https://github.com/Sunref/Greetique" target="_blank" rel="noopener">
+									<div class="project-card-top">
+										<span class="project-name">Greetique</span>
+										<span class="project-arrow">→</span>
+									</div>
+									<p class="project-desc">
+										An interactive card animation created with Raylib. The app displays colorful, animated balloons and stars along with a personalized message.
+									</p>
+									<div class="project-tags">
+										<span class="badge">C</span>
+										<span class="badge">Raylib</span>
+										<span class="badge">gif-h by charlietangora</span>
+									</div>
+									<span class="project-link">github.com/Sunref/Greetique</span>
+								</a>
+							</div>
+
+							<a class="all-projects-link" href="https://github.com/Sunref?tab=repositories" target="_blank" rel="noopener">
+								→ view all repositories on GitHub
+							</a>
+						</div>
+					</section>
+
+					<!-- CONTACT -->
+					<section class="tab-panel" id="tab-contact">
+						<div class="stage-header">
+							<span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+							<p class="stage-label">~/contact</p>
+						</div>
+						<div class="stage-body">
+							<p class="cmd">cat contact.md</p>
+
+							<div class="social-section">
+								<a class="social-item" href="https://github.com/Sunref" target="_blank" rel="noopener">
+									<span>GitHub</span>
+								</a>
+								<a class="social-item" href="https://linkedin.com/in/fernandamartsilva/" target="_blank" rel="noopener">
+									<span>LinkedIn</span>
+								</a>
+								<a class="social-item" href="mailto:martins.fernanda@protonmail.com">
+									<span>Email</span>
+								</a>
+							</div>
+
+							<p class="out contact-note">Open to internship opportunities.</p>
+						</div>
+					</section>
+				</main>
 			</div>
 		</div>
 
-		<div class="taskbar">
-			<button class="start-button"><span>Iniciar</span></button>
-			<div class="taskbar-divider"></div>
-			<div class="taskbar-items">
-				<div
-					class="taskbar-item"
-					id="taskbar-portfolio"
-					onclick="taskbarClick()"
-				>
-					<span class="icon">🖥️</span>
-					<span class="label">Portfólio</span>
-				</div>
-			</div>
-			<div class="system-tray">
-				<div class="tray-icon">🔊</div>
-				<div class="tray-icon">🌐</div>
-				<div class="tray-lang" onclick="toggleLang()">EN</div>
-				<div class="clock" id="clock">00:00</div>
-			</div>
-		</div>
-
-		<!-- FIX 2: sem ondblclick inline — JS gerencia dblclick + double-tap -->
-		<div class="desktop-icon" id="desktop-icon">
-			<div class="desktop-icon-img">
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					viewBox="0 0 48 48"
-					fill="none"
-				>
-					<rect
-						x="2"
-						y="6"
-						width="44"
-						height="32"
-						rx="3"
-						ry="3"
-						stroke="#00c853"
-						stroke-width="2"
-						fill="#060d06"
-					/>
-					<polyline
-						points="10,18 17,24 10,30"
-						stroke="#00e676"
-						stroke-width="2.5"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						fill="none"
-					/>
-					<line
-						x1="20"
-						y1="30"
-						x2="34"
-						y2="30"
-						stroke="#00e676"
-						stroke-width="2.5"
-						stroke-linecap="round"
-					/>
-					<rect
-						x="16"
-						y="38"
-						width="16"
-						height="3"
-						rx="1"
-						fill="#00c85355"
-					/>
-					<line
-						x1="10"
-						y1="44"
-						x2="38"
-						y2="44"
-						stroke="#00c85377"
-						stroke-width="1.5"
-						stroke-linecap="round"
-					/>
-				</svg>
-			</div>
-			<div class="desktop-icon-label">terminal</div>
-		</div>
-
-		<div class="start-menu hidden" id="start-menu">
-			<div class="start-menu-header">
-				<img
-					src="./images/perfil.jpg"
-					class="sm-avatar"
-					alt="Fernanda"
-				/>
-				<span class="sm-username">Fernanda</span>
-			</div>
-			<div class="start-menu-body">
-				<div class="sm-left">
-					<div
-						class="sm-item"
-						onclick="window.open('https://github.com/Sunref/nite')"
-					>
-						<span class="sm-icon">📝</span><span>NITE</span>
-					</div>
-					<div
-						class="sm-item"
-						onclick="
-							window.open(
-								'https://github.com/Sunref/Telegram-Class-Bot',
-							)
-						"
-					>
-						<span class="sm-icon">🤖</span><span>Telegram Bot</span>
-					</div>
-					<div class="sm-separator"></div>
-					<div class="sm-item sm-all-programs">
-						<span>Todos os Programas</span><span>▶</span>
-					</div>
-				</div>
-				<div class="sm-right">
-					<div
-						class="sm-item"
-						onclick="window.open('https://github.com/Sunref')"
-					>
-						<span class="sm-icon">💻</span><span>GitHub</span>
-					</div>
-					<div
-						class="sm-item"
-						onclick="
-							window.open(
-								'https://linkedin.com/in/fernandamartsilva/',
-							)
-						"
-					>
-						<span class="sm-icon">🔗</span><span>LinkedIn</span>
-					</div>
-					<div
-						class="sm-item"
-						onclick="
-							window.location.href =
-								'mailto:martins.fernanda@protonmail.com'
-						"
-					>
-						<span class="sm-icon">✉️</span><span>Email</span>
-					</div>
-					<div class="sm-separator"></div>
-					<div
-						class="sm-item"
-						onclick="
-							openWindow();
-							closeStartMenu();
-						"
-					>
-						<span class="sm-icon">📁</span><span>Portfólio</span>
-					</div>
-				</div>
-			</div>
-			<div class="start-menu-footer">
-				<div class="sm-search">
-					<span>🔍</span>
-					<input type="text" placeholder="Pesquisar" />
-				</div>
-				<div class="sm-power-group">
-					<button
-						class="sm-power-btn"
-						onclick="shutdownPC()"
-						title="Desligar"
-					>
-						⏻
-					</button>
-				</div>
-			</div>
-		</div>
-
-		<script src="script/main.js"></script>
+		<script src="./js/main.js"></script>
 	</body>
 </html>
