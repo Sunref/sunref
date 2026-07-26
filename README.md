@@ -25,7 +25,7 @@
 │  $ cat links.txt                                 │
 │                                                  │
 │  [portfolio]     sunref.github.io                │
-│                  /sunref/index.html              │
+│                  /sunref/                        │
 │  [linkedin]      linkedin.com                    │
 │                  /in/fernandamartsilva           │
 │                                                  │
