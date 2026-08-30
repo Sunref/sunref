@@ -10,7 +10,7 @@
 │  $ whoami                                        │
 │  ┌────────────────────────────────────────────┐  │
 │  │  Fernanda · Computer Science · IFSP-SBV    │  │
-│  │  · 22 anos · apaixonada por programação    │  │
+│  │  · 23 anos · apaixonada por programação    │  │
 │  │  e videogames · sempre aprendendo          │  │
 │  │  · apreciadora de desafios                 │  │
 │  └────────────────────────────────────────────┘  │
