@@ -23,7 +23,8 @@ body {
 
 body {
 	background-color: var(--bg-0);
-	font-family: "JetBrains Mono", "Fira Code", "Consolas", "Courier New", monospace;
+	font-family:
+		"JetBrains Mono", "Fira Code", "Consolas", "Courier New", monospace;
 	color: var(--text-dim);
 	overflow: hidden;
 }
@@ -91,7 +92,11 @@ body::before {
 	display: flex;
 	flex-direction: column;
 	overflow: hidden;
-	background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 200px);
+	background: linear-gradient(
+		180deg,
+		rgba(255, 255, 255, 0.02),
+		transparent 200px
+	);
 }
 
 .topbar {
@@ -374,6 +379,33 @@ body::before {
 	color: var(--green-dim);
 }
 
+.skills-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 480px) minmax(0, 1fr);
+	gap: 48px;
+	align-items: start;
+}
+
+.skills-col {
+	min-width: 0;
+}
+
+.stack-groups {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	max-width: 480px;
+	margin-top: 16px;
+}
+
+.stack-group-label {
+	display: block;
+	color: var(--text-dim);
+	font-size: 12px;
+	letter-spacing: 0.5px;
+	margin-bottom: 6px;
+}
+
 /* ============================================================
    PROJECTS
    ============================================================ */
@@ -538,8 +570,13 @@ body::before {
 		overflow-y: visible;
 	}
 	.skill-bars,
+	.stack-groups,
 	.project-list {
 		max-width: 100%;
+	}
+	.skills-layout {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 28px;
 	}
 	.about-text {
 		max-width: 100%;
